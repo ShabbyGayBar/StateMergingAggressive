@@ -1,0 +1,370 @@
+﻿geographic_region_europe = {
+	short_key = "europe"
+
+	strategic_regions = {
+		sr:region_western_europe
+		sr:region_southern_europe
+		sr:region_central_europe
+		sr:region_northern_europe
+		sr:region_balkans
+		sr:region_russia
+		sr:region_eastern_europe
+	}
+}
+
+geographic_region_hungary = {
+	short_key = "hungary"
+
+	state_regions = {
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+	}
+}
+
+geographic_region_german_confederation = {
+	short_key = "german_confederation"
+
+	state_regions = {
+		# former sr:region_north_germany
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_WEST_PRUSSIA
+
+		# sr:region_south_germany minus STATE_AUSTRIA and STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_LAZIO
+		STATE_LAZIO
+		STATE_ATTICA
+	}
+}
+
+geographic_region_megali_greece = {
+	short_key = "megali_greece"
+
+	state_regions = {
+		STATE_EASTERN_THRACE
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_EASTERN_THRACE
+		STATE_EASTERN_THRACE
+		STATE_EASTERN_THRACE
+		STATE_EASTERN_THRACE
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_EASTERN_THRACE
+	}
+}
+
+geographic_region_historic_byzantium = {
+	short_key = "historic_byzantium"
+
+	state_regions = {
+		STATE_EASTERN_THRACE
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_EASTERN_THRACE
+		STATE_EASTERN_THRACE
+		STATE_ATTICA
+		STATE_EASTERN_THRACE
+		STATE_ATTICA
+	}
+}
+
+geographic_region_iceland = {
+	short_key = "iceland"
+
+	state_regions = {
+		STATE_ULSTER
+	}
+}
+
+geographic_region_greater_germany = {
+	short_key = "greater_germany"
+
+	state_regions = {
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_WEST_PRUSSIA
+		STATE_FLANDERS
+		STATE_HANNOVER
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_HANNOVER
+		STATE_WEST_PRUSSIA
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_FLANDERS
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_LAZIO
+		STATE_ATTICA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+	}
+}
+
+geographic_region_lesser_germany = {
+	short_key = "lesser_germany"
+
+	state_regions = {
+		STATE_HANNOVER
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_FLANDERS
+		STATE_HANNOVER
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_WEST_PRUSSIA
+		STATE_HANNOVER
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_FLANDERS
+		STATE_AUSTRIA
+	}
+}
+
+geographic_region_scandinavia = {
+	short_key = "scandinavia"
+
+	state_regions = {
+		STATE_SVEALAND
+		STATE_SVEALAND
+		STATE_HANNOVER
+		STATE_SVEALAND
+		STATE_SVEALAND
+		STATE_SVEALAND
+		STATE_SVEALAND
+		STATE_SVEALAND
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_SVEALAND
+		STATE_SVEALAND
+		STATE_SVEALAND
+	}
+}
+
+
+geographic_region_yugoslavia = {
+	short_key = "yugoslavia"
+
+	state_regions = {
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_BESSARABIA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_LAZIO
+	}
+}
+
+geographic_region_castile = {
+	short_key = "castile"
+
+	state_regions = {
+		STATE_CATALONIA
+		STATE_CATALONIA
+		STATE_CATALONIA
+		STATE_CATALONIA
+		STATE_CATALONIA
+		STATE_CATALONIA
+		STATE_CATALONIA
+		STATE_CATALONIA
+		STATE_CATALONIA
+	}
+}
+
+geographic_region_aragon = {
+	short_key = "aragon"
+
+	state_regions = {
+		STATE_CATALONIA
+		STATE_CATALONIA
+		STATE_CATALONIA
+		STATE_CATALONIA
+	}
+}
+
+geographic_region_greater_romania = {
+	short_key = "greater_romania"
+
+	state_regions = {
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+	}
+}
+
+geographic_region_france = {
+	short_key = "france"
+
+	state_regions = {
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_PROVENCE
+		STATE_PROVENCE
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_FLANDERS
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_PROVENCE
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_NORMANDY
+	}
+}
+
+geographic_region_greater_croatia = {
+	short_key = "greater_croatia"
+
+	state_regions = {
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_LAZIO
+	}
+}
+
+geographic_region_french_natural_borders = {
+	short_key = "french_natural_borders"
+
+	state_regions = {
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_PROVENCE
+		STATE_PROVENCE
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_FLANDERS
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_PROVENCE
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_FLANDERS
+	}
+}
+
+geographic_region_greater_bulgaria = {
+	short_key = "greater_bulgaria"
+
+	state_regions = {
+		STATE_ATTICA
+		STATE_BESSARABIA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_EASTERN_THRACE
+	}
+}
+
+geographic_region_north_andes = { # North Andean homelands
+	short_key = "north_andes"
+
+	state_regions = {
+		STATE_LIMA
+		STATE_MIRANDA
+		STATE_MIRANDA
+		STATE_MIRANDA
+		STATE_MIRANDA
+		STATE_MIRANDA
+		STATE_MIRANDA
+		STATE_MIRANDA
+	}
+}

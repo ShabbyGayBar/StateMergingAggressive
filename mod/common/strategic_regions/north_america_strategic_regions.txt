@@ -1,0 +1,32 @@
+﻿# Strategic Regions in North America
+
+region_canada = {
+	capital_province = x8C4FC7
+	map_color = { 0.21 0.81 0.82 }
+	states = {   STATE_ONTARIO      }
+}
+
+region_pacific_coast = {
+	capital_province = xBD0F03
+	map_color = { 0.471 0.824 0.196 }
+	states = { STATE_CALIFORNIA          }
+}
+
+region_great_plains = {
+	capital_province = x9A9935
+	map_color = { 0.5 1 0.5 }
+	states = { STATE_MONTANA              }
+}
+
+region_atlantic_coast = {
+	capital_province = x6B3BE8
+	map_color = { 0 0.8 0.4 }
+	states = {      STATE_OHIO   STATE_MASSACHUSETTS           STATE_MISSISSIPPI         }
+}
+
+region_central_america = {
+	graphical_culture = "latin"
+	capital_province = x10EFC0
+	map_color = { 1 0.25 0.25 }
+	states = {  STATE_HONDURAS        STATE_JALISCO            STATE_WESTERN_CUBA        }
+}

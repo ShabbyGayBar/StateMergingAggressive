@@ -1,0 +1,88 @@
+﻿geographic_region_ring_of_fire = { # approximation of the Ring of Fire
+	short_key = "ring_of_fire"
+
+	strategic_regions = {
+		sr:region_indonesia
+		sr:region_pacific_coast
+		sr:region_gran_colombia
+		sr:region_andes
+		sr:region_la_plata
+	}
+
+	state_regions = {
+		STATE_BANGKOK
+		STATE_GUANGDONG
+		STATE_OKHOTSK
+		STATE_SOLOMON_ISLANDS
+		STATE_SOLOMON_ISLANDS
+
+		# Japan
+		STATE_NORTH_ISLAND
+		STATE_NORTH_ISLAND
+		STATE_FIJI
+		STATE_KANTO
+		STATE_KANTO
+		STATE_KANTO
+		STATE_KANTO
+		STATE_KANTO
+		STATE_KANTO
+		STATE_KANTO
+		STATE_KANTO
+		STATE_KANTO
+		STATE_KANTO
+		STATE_KANTO
+		STATE_KANTO
+
+		# Pacific Mexico
+		STATE_JALISCO
+		STATE_JALISCO
+		STATE_JALISCO
+		STATE_JALISCO
+		STATE_JALISCO
+		STATE_JALISCO
+		STATE_JALISCO
+		STATE_JALISCO
+		STATE_JALISCO
+		STATE_JALISCO
+	}
+}
+
+geographic_region_alpide_belt = { # approximation of Alpide belt, Austrian geologist Eduard Suess
+	short_key = "alpide_belt"
+
+	strategic_regions = {
+		sr:region_southern_europe
+		sr:region_near_east
+		sr:region_greater_persia
+		sr:region_himalayas
+		sr:region_north_india
+		sr:region_indochina
+	}
+
+	state_regions = {
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_BOMBAY
+		STATE_BOMBAY
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+	}
+}
+
+geographic_region_great_rift_valley = { # approximation of East African Rift, or the Gregory Rift, originally called the Great Rift Valley by British geologist and explorer John Walter Gregory
+	short_key = "great_rift_valley"
+
+	strategic_regions = {
+		sr:region_nile_basin
+		sr:region_east_africa
+	}
+}

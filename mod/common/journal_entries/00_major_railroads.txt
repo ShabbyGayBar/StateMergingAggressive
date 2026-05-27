@@ -1,0 +1,208 @@
+﻿je_trans_siberian_railway = {
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+	group = je_group_russia_expansion
+
+	is_shown_when_inactive = {
+		NOT = { has_global_variable = trans_siberian_done }
+		owns_entire_state_region = STATE_INGRIA
+		any_state_in_siberia = {
+			percent > 0.8
+			owner = ROOT
+		}
+	}
+
+	possible = {
+		has_technology_researched = railways
+	}
+
+	complete = {
+		any_scope_state = {
+			filter = {
+				OR = {
+					state_region = s:STATE_INGRIA
+					state_region = s:STATE_INGRIA
+					state_region = s:STATE_INGRIA
+					state_region = s:STATE_INGRIA
+					state_region = s:STATE_UFA
+					state_region = s:STATE_UFA
+					state_region = s:STATE_UFA
+					state_region = s:STATE_UFA
+					state_region = s:STATE_TOMSK
+					state_region = s:STATE_TOMSK
+					state_region = s:STATE_TOMSK
+					state_region = s:STATE_OKHOTSK
+					state_region = s:STATE_OKHOTSK
+					state_region = s:STATE_OKHOTSK
+				}
+			}
+			has_building = building_railway
+			percent = 1
+		}
+		OR = {
+			AND = {
+				any_scope_state = {
+					state_region = s:STATE_OKHOTSK
+					has_building = building_railway
+				}
+				any_scope_state = {
+					state_region = s:STATE_OKHOTSK
+					has_building = building_railway
+				}
+			}
+			AND = {
+				any_scope_state = {
+					state_region = s:STATE_SHENGJING
+					has_building = building_railway
+				}
+				any_scope_state = {
+					state_region = s:STATE_SHENGJING
+					has_building = building_railway
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		set_global_variable = trans_siberian_done
+		trigger_event = { id = major_railways.1 }
+	}
+
+	weight = 50
+}
+
+je_trans_continental_railway = {
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+	group = je_group_usa_manifest_destiny
+
+	is_shown_when_inactive = {
+		NOT = { has_global_variable = trans_continental_done }
+		owns_entire_state_region = STATE_MASSACHUSETTS
+		any_scope_state = {
+			state_region = s:STATE_MONTANA
+		}
+	}
+
+	possible = {
+		has_technology_researched = railways
+		owns_entire_state_region = STATE_MONTANA
+		owns_entire_state_region = STATE_CALIFORNIA
+	}
+
+	complete = {
+		any_scope_state = {
+			state_region = s:STATE_MONTANA
+			has_building = building_railway
+		}
+		any_scope_state = {
+			state_region = s:STATE_MONTANA
+			has_building = building_railway
+		}
+		any_scope_state = {
+			state_region = s:STATE_CALIFORNIA
+			has_building = building_railway
+		}
+		any_scope_state = {
+			state_region = s:STATE_CALIFORNIA
+			has_building = building_railway
+		}
+		any_scope_state = {
+			state_region = s:STATE_CALIFORNIA
+			has_building = building_railway
+		}
+	}
+
+	on_complete = {
+		set_global_variable = trans_continental_done
+		trigger_event = { id = major_railways.2 }
+	}
+
+	weight = 50
+}
+
+je_canada_pacific_railway = {
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+	group = je_group_historical_content
+
+	is_shown_when_inactive = {
+		NOT = { has_global_variable = canada_pacific_done }
+		OR = {
+			any_scope_state = {
+				state_region = s:STATE_ONTARIO
+			}
+			any_scope_state = {
+				state_region = s:STATE_CALIFORNIA
+			}
+			any_scope_state = {
+				state_region = s:STATE_ONTARIO
+			}
+			any_scope_state = {
+				state_region = s:STATE_MONTANA
+			}
+			any_scope_state = {
+				state_region = s:STATE_MONTANA
+			}
+			any_scope_state = {
+				state_region = s:STATE_ONTARIO
+			}
+		}
+	}
+
+	possible = {
+		has_technology_researched = railways
+		any_scope_state = {
+			state_region = s:STATE_ONTARIO
+		}
+		any_scope_state = {
+			state_region = s:STATE_CALIFORNIA
+		}
+		any_scope_state = {
+			state_region = s:STATE_ONTARIO
+		}
+		any_scope_state = {
+			state_region = s:STATE_MONTANA
+		}
+		any_scope_state = {
+			state_region = s:STATE_MONTANA
+		}
+		any_scope_state = {
+			state_region = s:STATE_ONTARIO
+		}
+	}
+
+	complete = {
+		any_scope_state = {
+			state_region = s:STATE_ONTARIO
+			has_building = building_railway
+		}
+		any_scope_state = {
+			state_region = s:STATE_CALIFORNIA
+			has_building = building_railway
+		}
+		any_scope_state = {
+			state_region = s:STATE_ONTARIO
+			has_building = building_railway
+		}
+		any_scope_state = {
+			state_region = s:STATE_MONTANA
+			has_building = building_railway
+		}
+		any_scope_state = {
+			state_region = s:STATE_MONTANA
+			has_building = building_railway
+		}
+		any_scope_state = {
+			state_region = s:STATE_ONTARIO
+			has_building = building_railway
+		}
+	}
+
+	on_complete = {
+		set_global_variable = canada_pacific_done
+		trigger_event = { id = major_railways.3 }
+	}
+
+	weight = 50
+}
