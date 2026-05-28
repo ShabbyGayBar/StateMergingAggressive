@@ -1,0 +1,2579 @@
+﻿# ---- 00_decisions.txt ----
+REPLACE:revive_olympic_games_decision = {
+	is_shown = {
+		exists = c:GRE
+		c:GRE ?= THIS
+	}
+
+	possible = {
+		c:GRE ?= THIS
+		has_technology_researched = organized_sports
+		hidden_trigger = {
+			NOT = { has_variable = revive_olympics_decision_taken }
+		}
+	}
+
+	when_taken = {
+		set_variable = {
+			name = revive_olympics_decision_taken
+			value = yes
+		}
+		add_modifier = {
+			name = modifier_olympic_games
+		}
+		add_modifier = {
+			name = modifier_olympic_games_bureaucracy
+			days = short_modifier_time
+		}
+	}
+
+	ai_chance = {
+		value = 0
+		if = {
+			limit = { bureaucracy > 0 }
+			add = 5
+		}
+		if = {
+			limit = {
+				OR = {
+					is_diplomatic_play_committed_participant = yes
+					is_at_war = yes
+				}
+			}
+			multiply = 0
+		}
+	}
+}
+
+REPLACE:lowlands_land_reclamation = {
+	is_shown = {
+		owns_entire_state_region = STATE_FLANDERS
+		owns_entire_state_region = STATE_FLANDERS
+		OR = {
+			NOT = { exists = global_var:land_reclamation_global }
+			AND = {
+				exists = global_var:land_reclamation_global
+				global_var:land_reclamation_global >= 10
+			}
+		}
+		NOT = { has_variable = dutch_land_reclaimer }
+	}
+
+	possible = {
+		has_technology_researched = watertube_boiler
+		bureaucracy > 200
+	}
+
+	when_taken = {
+		if = {
+			limit = {
+				NOT = { has_global_variable = land_reclamation_global }
+			}
+			set_global_variable = {
+				name = land_reclamation_global
+				value = 0
+			}
+		}
+		add_modifier = {
+			name = modifier_reclaiming_land
+			days = -1 # permanent until removed
+		}
+		add_journal_entry = { type = je_land_reclamation }
+		set_variable = dutch_land_reclaimer
+		if = {
+			limit = {
+				NOT = { has_technology_researched = concrete_dockyards }
+			}
+			custom_tooltip = land_reclamation_no_tech
+		}
+		else = {
+			custom_tooltip = land_reclamation_tech
+		}
+	}
+
+	ai_chance = {
+		value = 5
+		if = {
+			limit = {
+				OR = {
+					is_diplomatic_play_committed_participant = yes
+					is_at_war = yes
+				}
+			}
+			multiply = 0
+		}
+	}
+}
+
+REPLACE:abolish_tangena_ordeal = {
+	is_shown = {
+		exists = c:MAD
+		c:MAD ?= ROOT
+		has_modifier = modifier_tangena_ordeal
+	}
+
+	possible = {
+		exists = c:MAD
+		c:MAD ?= ROOT
+		has_modifier = modifier_tangena_ordeal
+		custom_tooltip = {
+			text = ranavalona_tt
+			NOT = {
+				ruler = {
+					has_variable = ranavalona
+				}
+			}
+		}
+	}
+
+	when_taken = {
+		remove_modifier = modifier_tangena_ordeal
+	}
+
+	ai_chance = {
+		value = 100
+	}
+}
+
+REPLACE:establish_pact_with_nafusis = {
+	is_shown = {
+		c:FZN ?= this
+		year < 1837
+		NOT = {
+			country_has_state_religion = rel:ibadi
+		}
+	}
+
+	possible = {
+		is_at_war = yes
+	}
+
+	when_taken = {
+		set_state_religion = rel:ibadi
+		ruler ?= {
+			change_character_religion = rel:ibadi
+		}
+		heir ?= {
+			change_character_religion = rel:ibadi
+		}
+		ig:ig_devout ?= {
+			set_interest_group_name = ig_ibadi_madrasahs
+			remove_ideology = ideology_moralist
+			remove_ideology = ideology_patriarchal
+			add_ideology = ideology_ibadi_shura
+			add_ideology = ideology_ibadi_imamate
+			hidden_effect = {
+				leader ?= {
+					change_character_religion = rel:ibadi
+				}
+			}
+		}
+		every_scope_state = {
+			convert_population = {
+				target = rel:ibadi
+				value = 0.15
+			}
+		}
+		add_modifier = {
+			name = fzn_mountain_tribes_mobilized
+			days = very_short_modifier_time
+		}
+	}
+
+	ai_chance = {
+		value = 10
+	}
+}
+
+
+# ---- austria_decisions.txt ----
+REPLACE:aus_organise_trialism = {
+	is_shown = {
+		has_dlc_feature = ip3_content
+		has_technology_researched = pan-nationalism
+		c:AUS ?= this
+		any_subject_or_below = {
+			NOT = {
+				country_has_primary_culture = cu:croat
+			}
+			any_scope_state = {
+				state_region = s:STATE_ATTICA
+			}
+		}
+		country_has_monarchy_law = yes
+		NOT = {
+			has_variable = aus_organised_trialism
+		}
+	}
+	possible = {
+		has_government_type = gov_dual_monarchy
+		any_subject_or_below = {
+			NOT = {
+				country_has_primary_culture = cu:croat
+			}
+			any_scope_state = {
+				state_region = s:STATE_ATTICA
+			}
+			OR = {
+				relations:root <= 0
+				liberty_desire >= 50
+				has_attitude = {
+					who = ROOT
+					attitude = rebellious
+				}
+			}
+		}
+		is_at_war = no
+		is_diplomatic_play_committed_participant = no
+	}
+	when_taken = {
+		set_variable = aus_organised_trialism
+		random_subject_or_below = {
+			limit = {
+				NOT = {
+					country_has_primary_culture = cu:croat
+				}
+				any_scope_state = {
+					state_region = s:STATE_ATTICA
+				}
+			}
+			custom_tooltip = {
+				text = austria_trialism.1.t_display_tt
+				trigger_event = { id = austria_trialism.1 }
+			}
+		}
+	}
+	ai_chance = {
+		value = -100
+		if = {
+			limit = {
+				any_subject_or_below = {
+					NOT = {
+						country_has_primary_culture = cu:croat
+					}
+					any_scope_state = {
+						state_region = s:STATE_ATTICA
+					}
+					save_temporary_scope_as = hungary_scope
+				}
+			}
+			every_subject_or_below = {
+				limit = {
+					NOT = {
+						country_has_primary_culture = cu:croat
+					}
+					any_scope_state = {
+						state_region = s:STATE_ATTICA
+					}
+				}
+				add = scope:hungary_scope.liberty_desire
+			}
+			if = {
+				limit = {
+					scope:hungary_scope = {
+						has_attitude = {
+							who = ROOT
+							attitude = rebellious
+						}
+					}
+				}
+				add = 25
+			}
+			subtract = { # -50 at 100 relations, +50 at -100
+				value = "relations(scope:hungary_scope)"
+				multiply = 0.5
+			}
+		}
+	}
+}
+
+REPLACE:aus_revisit_federation_proposal = {
+	is_shown = {
+		has_dlc_feature = ip3_content
+		has_technology_researched = pan-nationalism
+		has_variable = received_federation_proposal
+		NOT = {
+			has_journal_entry = je_danubian_federation
+		}
+		NOT = {
+			has_variable = danubian_federation_done_with
+		}
+	}
+	possible = {
+		custom_tooltip = {
+			text = shelved_too_soon_ago_tt
+			NOT = {
+				has_variable = shelved_federation_proposal
+			}
+		}
+	}
+	when_taken = {
+		add_journal_entry = { type = je_danubian_federation }
+		every_subject_or_below = {
+			limit = {
+				capital = {
+					OR = {
+						is_in_geographic_region = geographic_region_danubia_old
+						is_in_geographic_region = geographic_region_poland_old
+						is_in_geographic_region = geographic_region_balkans_old
+						is_in_geographic_region = geographic_region_south_germany_old
+					}
+				}
+			}
+			trigger_event = { id = austria_federation.13 popup = yes }
+		}
+	}
+	ai_chance = {
+		value = -10
+		if = {
+			limit = {
+				ruler = {
+					is_interest_group_type = ig_armed_forces
+				}
+			}
+			add = 25
+		}
+		if = {
+			limit = {
+				ruler ?= {
+					NOT = {
+						culture = cu:south_german
+					}
+				}
+			}
+			add = 100
+		}
+		if = {
+			limit = {
+				any_subject_or_below = {
+					OR = {
+						is_subject_type = subject_type_crown_land
+						is_subject_type = subject_type_personal_union
+					}
+					relations:root <= relations_threshold:poor
+				}
+			}
+			add = 15
+		}
+		if = {
+			limit = {
+				ruler = {
+					has_template = aus_franz_josef_I_habsburg_template
+				}
+			}
+			add = -10
+		}
+	}
+}
+
+REPLACE:aus_integrate_crown_lands_decision = {
+	is_shown = {
+		c:AUS ?= this
+		NOT = {
+			has_journal_entry = je_matter_of_hungary
+		}
+		NOT = {
+			has_variable = crownlands_annexed_var
+		}
+		any_subject_or_below = {
+			is_subject_type = subject_type_crown_land
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = matter_of_hungary_integrate_crown_lands_tt
+			NOT = {
+				any_subject_or_below = {
+					is_subject_type = subject_type_crown_land
+					liberty_desire > 25
+				}
+			}
+		}
+	}
+
+	when_taken = {
+		set_variable = crownlands_annexed_var
+		every_subject_or_below = {
+			limit = {
+				is_subject_type = subject_type_crown_land
+			}
+			if = {
+				limit = {
+					is_player = yes
+				}
+				play_as = prev
+			}
+			root = {
+				annex = prev
+			}
+		}
+		add_modifier = {
+			name = modifier_streamline_crown_lands
+			days = normal_modifier_time
+		}
+		add_radicals = {
+			culture = cu:hungarian
+			value = medium_radicals
+		}
+		add_radicals = {
+			culture = cu:polish
+			value = medium_radicals
+		}
+		add_radicals = {
+			culture = cu:croat
+			value = medium_radicals
+		}
+	}
+
+	ai_chance = {
+		value = 10
+		if = {
+			limit = { # Will not annex players until their liberty desire is below 5.
+				any_subject_or_below = {
+					is_subject_type = subject_type_crown_land
+					is_player = yes
+					liberty_desire > 5
+				}
+			}
+			add = -100
+		}
+	}
+}
+
+
+# ---- austro_hungarian_decisions.txt ----
+REPLACE:decision_found_budapest = {
+	is_shown = {
+		NOT = {
+			has_global_variable = budapest_founded_global_var
+		}
+		any_scope_state = {
+			state_region = s:STATE_BESSARABIA
+		}
+	}
+
+	possible = {
+		has_technology_researched = modern_sewerage
+		any_scope_state = {
+			state_region = s:STATE_BESSARABIA
+			is_capital = yes
+			any_scope_building = {
+				is_building_type = building_urban_center
+				level >= 3
+			}
+			any_scope_building = {
+				is_building_type = building_railway
+			}
+		}
+		trigger_if = {
+			limit = {
+				c:HUN ?= this
+			}
+			NOT = {
+				is_subject_type = subject_type_crown_land
+			}
+		}
+	}
+
+	when_taken = {
+		custom_tooltip = decision_found_budapest_tt
+		set_global_variable = budapest_founded_global_var
+		hidden_effect = { # To deal with tooltip wonkiness
+			trigger_event = { id = hungary_events.1 popup = yes }
+		}
+		random_scope_state = {
+			limit = {
+				state_region = s:STATE_BESSARABIA
+			}
+			STATE_CENTRAL_HUNGARY_state_name_assign = yes
+		}
+		custom_tooltip = choose_one_of_tt
+		show_as_tooltip = {
+			s:STATE_BESSARABIA.region_state:HUN = {
+				add_modifier = {
+					name = modifier_budapest_steam_mills
+					days = long_modifier_time
+				}
+			}
+			s:STATE_BESSARABIA.region_state:HUN = {
+				add_modifier = {
+					name = modifier_budapest_paris_of_the_east
+					days = long_modifier_time
+				}
+			}
+			trigger_event = { id = hungary_events.1 popup = yes }
+		}
+	}
+
+	ai_chance = {
+		value = 10
+	}
+}
+
+REPLACE:decision_move_capital_to_buda = {
+	is_shown = {
+		NOT = {
+			has_variable = budapest_made_capital_var
+		}
+		any_scope_state = {
+			state_region = s:STATE_BESSARABIA
+		}
+		c:HUN ?= this
+	}
+
+	possible = {
+		NOT = {
+			capital = {
+				state_region = s:STATE_BESSARABIA
+			}
+		}
+		NOT = {
+			is_subject_type = subject_type_crown_land
+		}
+	}
+
+	when_taken = {
+		set_capital = STATE_BESSARABIA
+		set_variable = budapest_made_capital_var
+		random_scope_state = {
+			limit = {
+				state_region = s:STATE_BESSARABIA
+			}
+			add_modifier = {
+				name = modifier_buda_made_capital
+				days = long_modifier_time
+			}
+		}
+		add_loyalists = {
+			culture = cu:hungarian
+			value = small_radicals
+		}
+	}
+
+	ai_chance = {
+		value = 10
+	}
+}
+
+REPLACE:decision_demand_hungary_revoke_laws = {
+	is_shown = {
+		c:AUS ?= this
+		NOT = {
+			has_variable = hungarian_ultimatum_sent_var
+		}
+		has_journal_entry = je_matter_of_hungary
+		c:HUN ?= {
+			is_subject_of = root
+			NOT = {
+				is_subject_type = subject_type_personal_union
+			}
+			OR = {
+				has_variable = hungarian_revolution_twelve_points_var
+				has_variable = hungarian_revolution_annex_transylvania_button_var
+			}
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = decision_demand_hungary_revoke_laws_tt
+			has_variable = austria_folded_to_hungary_var
+		}
+		NOT = {
+			c:HUN ?= {
+				is_diplomatic_play_ally_of = ROOT
+			}
+		}
+		NOT = {
+			any_interest_group = {
+				is_in_government = yes
+				is_powerful = yes
+				leader = {
+					OR = {
+						has_progressive_ideology = yes
+						has_liberal_ideology = yes
+						has_socialist_ideology = yes
+					}
+				}
+			}
+		}
+	}
+
+	when_taken = {
+		c:HUN ?= {
+			save_temporary_scope_as = hungary_country_scope
+		}
+ 		c:HUN ?= {
+ 			trigger_event = { id = hungary_events.6 popup = yes }
+ 		}
+ 		change_relations = { country = c:HUN value = -30 }
+ 		custom_tooltip = hungary_likely_lead_to_war_tt
+ 		create_diplomatic_catalyst = {
+ 			type = catalyst_event_negative
+ 			target = c:HUN
+ 		}
+ 		add_radicals = {
+ 			culture = cu:hungarian
+ 			value = medium_radicals
+ 		}
+	}
+
+	ai_chance = {
+		value = 0
+		if = {
+			limit = {
+				ruler = {
+					NOT = {
+						has_trait = compliant
+					}
+				}
+			}
+			add = 5
+		}
+		if = {
+			limit = {
+				is_at_war = no
+			}
+			add = 5
+		}
+	}
+}
+
+
+# ---- canal_decisions.txt ----
+REPLACE:suez_survey_decision = {
+	is_shown = {
+		NOT = {
+			has_variable = survey_suez_taken
+			has_global_variable = suez_canal_complete
+		}
+		OR = {
+			country_rank = rank_value:great_power
+			s:STATE_LOWER_EGYPT = {
+				any_scope_state = {
+					owner = ROOT
+				}
+			}
+		}
+		s:STATE_LOWER_EGYPT = {
+			NOT = {
+				any_scope_state = {
+					has_building = building_suez_canal
+				}
+			}
+		}
+	}
+
+	possible = {
+		has_interest_marker_in_region = sr:region_nile_basin
+		has_technology_researched = colonization
+		produced_bureaucracy > 1000
+	}
+
+	when_taken = {
+		set_variable = {
+			name = survey_suez_taken
+			value = 0
+		}
+		add_modifier = {
+			name = modifier_surveying_suez
+		}
+		add_journal_entry = {
+			type = je_suez_survey
+		}
+	}
+
+	ai_chance = {
+		value = 0
+		if = {
+			limit = { produced_bureaucracy > 5000 }
+			add = 10
+		}
+		if = {
+			limit = {
+				has_strategy = ai_strategy_armed_isolationism
+			}
+			multiply = 0
+		}
+		if = {
+			limit = {
+				OR = {
+					is_diplomatic_play_committed_participant = yes
+					is_at_war = yes
+				}
+			}
+			multiply = 0
+		}
+	}
+}
+
+REPLACE:stop_suez_survey_decision = {
+	is_shown = {
+		has_modifier = modifier_surveying_suez
+	}
+	possible = {
+		has_modifier = modifier_surveying_suez
+	}
+	when_taken = {
+		remove_variable = survey_suez_taken
+		remove_modifier = modifier_surveying_suez
+	}
+	ai_chance = {
+		value = 0
+	}
+}
+
+REPLACE:suez_canal_purchase = {
+	is_shown = {
+		has_variable = suez_canal_purchase
+		NOT = {
+			has_global_variable = suez_canal_purchase_var
+			has_global_variable = suez_canal_complete
+		}
+		s:STATE_LOWER_EGYPT = {
+			any_scope_state = {
+				NOT = {
+					has_building = building_suez_canal
+				}
+				owner = {
+					owns_treaty_port_in = STATE_LOWER_EGYPT
+					NOT = {
+						has_variable = suez_survey_complete
+					}
+				}
+			}
+		}
+	}
+
+	possible = {
+		gdp > 50000000
+		p:xC01060.state.owner = {
+			relations:root >= relations_threshold:cordial
+			}
+		NOT = { has_war_with = ROOT }
+	}
+
+	when_taken = {
+		set_global_variable = suez_canal_purchase_var
+		if = {
+			limit = {
+				s:STATE_LOWER_EGYPT = {
+					any_scope_state = {
+						owner = {
+							owns_treaty_port_in = STATE_LOWER_EGYPT
+							is_player = no
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				s:STATE_LOWER_EGYPT = {
+					random_scope_state = {
+						limit = {
+							owner = {
+								owns_treaty_port_in = STATE_LOWER_EGYPT
+							}
+						}
+						owner = {
+							add_modifier = {
+								name = suez_sale
+								months = 120
+							}
+						}
+					}
+				}
+			}
+			s:STATE_LOWER_EGYPT = {
+				set_owner_of_provinces = {
+					country = ROOT
+					provinces = { xC01060 x8ED45E }
+				}
+			}
+			add_modifier = {
+				name = suez_purchase
+				months = 120
+			}
+		}
+		else = {
+			trigger_event = {
+				id = canal_events.1
+				days = 0
+				popup = yes
+			}
+		}
+	}
+
+	ai_chance = {
+		value = 0
+		if = {
+			limit = { gold_reserves > 15000000 }
+			add = 10
+		}
+		if = {
+			limit = {
+				net_fixed_income > 100000
+				gold_reserves > 0
+			}
+			add = 10
+		}
+		if = {
+			limit = {
+				OR = {
+					is_diplomatic_play_committed_participant = yes
+					is_at_war = yes
+				}
+			}
+			multiply = 0
+		}
+	}
+}
+
+REPLACE:panama_survey_decision = {
+	is_shown = {
+		NOT = {
+			has_variable = survey_panama_taken
+			has_global_variable = panama_canal_complete
+		}
+		OR = {
+			country_rank = rank_value:great_power
+			s:STATE_HONDURAS = {
+				any_scope_state = {
+					owner = ROOT
+				}
+			}
+		}
+		s:STATE_HONDURAS = {
+			NOT = {
+				any_scope_state = {
+					has_building = building_panama_canal
+				}
+			}
+		}
+	}
+
+	possible = {
+		has_interest_marker_in_region = sr:region_central_america
+		has_technology_researched = civilizing_mission
+		produced_bureaucracy > 1000
+	}
+
+	when_taken = {
+		set_variable = {
+			name = survey_panama_taken
+			value = 0
+		}
+		add_modifier = {
+			name = modifier_surveying_panama
+		}
+		add_journal_entry = {
+			type = je_panama_survey
+		}
+	}
+
+	ai_chance = {
+		value = 0
+		if = {
+			limit = { produced_bureaucracy > 5000 }
+			add = 10
+		}
+		if = {
+			limit = {
+				has_strategy = ai_strategy_armed_isolationism
+			}
+			multiply = 0
+		}
+		if = {
+			limit = {
+				OR = {
+					is_diplomatic_play_committed_participant = yes
+					is_at_war = yes
+				}
+			}
+			multiply = 0
+		}
+	}
+}
+
+REPLACE:stop_panama_survey_decision = {
+	is_shown = {
+		has_modifier = modifier_surveying_panama
+	}
+	possible = {
+		has_modifier = modifier_surveying_panama
+	}
+	when_taken = {
+		remove_variable = survey_panama_taken
+		remove_modifier = modifier_surveying_panama
+	}
+	ai_chance = {
+		value = 0
+	}
+}
+
+REPLACE:panama_canal_purchase = {
+	is_shown = {
+		is_subject = no
+		has_variable = panama_canal_purchase
+		NOT = {
+			has_global_variable = panama_canal_purchase_var
+			has_global_variable = panama_canal_complete
+		}
+		s:STATE_HONDURAS = {
+			any_scope_state = {
+				NOT = {
+					has_building = building_panama_canal
+				}
+				owner = {
+					owns_treaty_port_in = STATE_HONDURAS
+					NOT = {
+						has_variable = panama_survey_complete
+					}
+				}
+			}
+		}
+	}
+
+	possible = {
+		gdp > 50000000
+		p:xD0EF40.state.owner = {
+			relations:root >= relations_threshold:cordial
+		}
+		NOT = { has_war_with = ROOT }
+	}
+
+	when_taken = {
+		set_global_variable = panama_canal_purchase_var
+		if = {
+			limit = {
+				s:STATE_HONDURAS = {
+					any_scope_state = {
+						owner = {
+							owns_treaty_port_in = STATE_HONDURAS
+							is_player = no
+						}
+					}
+				}
+			}
+			hidden_effect = {
+				s:STATE_HONDURAS = {
+					random_scope_state = {
+						limit = {
+							owner = {
+								owns_treaty_port_in = STATE_HONDURAS
+							}
+						}
+						owner = {
+							add_modifier = {
+								name = panama_sale
+								months = 120
+							}
+						}
+					}
+				}
+			}
+			s:STATE_HONDURAS = {
+				set_owner_of_provinces = {
+					country = ROOT
+					provinces = { xD0EF40 x910E14 }
+				}
+			}
+			add_modifier = {
+				name = panama_purchase
+				months = 120
+			}
+		}
+		else = {
+			trigger_event = {
+				id = canal_events.5
+				days = 0
+				popup = yes
+			}
+		}
+	}
+
+	ai_chance = {
+		value = 0
+		if = {
+			limit = { gold_reserves > 15000000 }
+			add = 10
+		}
+		if = {
+			limit = {
+				net_fixed_income > 100000
+				gold_reserves > 0
+			}
+			add = 10
+		}
+		if = {
+			limit = {
+				OR = {
+					is_diplomatic_play_committed_participant = yes
+					is_at_war = yes
+				}
+			}
+			multiply = 0
+		}
+	}
+}
+
+
+# ---- france_savoy.txt ----
+REPLACE:france_annex_savoy = {
+	is_shown = {
+		has_dlc_feature = voice_of_the_people_content
+		exists = c:FRA
+		c:FRA = ROOT
+		NOT = { has_global_variable = fra_annexed_savoy }
+		is_subject = no
+		NOT = { owns_entire_state_region = STATE_PROVENCE }
+		s:STATE_PROVENCE = {
+			any_scope_state = {
+				NOT = { owner ?= ROOT }
+				is_split_state = no
+				is_capital = no
+				owner ?= {
+					is_player = no
+				}
+			}
+		}
+	}
+
+	possible = {
+		has_technology_researched = nationalism
+		sr:region_southern_europe = {
+			any_scope_country = {
+				custom_tooltip = {
+					text = at_peace_nocontext_tt
+					is_at_war = no
+				}
+				any_scope_state = {
+					state_region = s:STATE_PROVENCE
+					is_split_state = no
+					is_capital = no
+				}
+				custom_tooltip = {
+					text = relations_amicable_nocontext_tt
+					relations:root >= relations_threshold:amicable
+				}
+				is_revolutionary = no
+				OR = {
+					is_subject = no
+					is_subject_of = ROOT
+				}
+				trigger_if = {
+					limit = {
+						is_subject = no
+					}
+					owes_obligation_to = ROOT
+				}
+			}
+		}
+	}
+
+	when_taken = {
+		set_global_variable = fra_annexed_savoy
+		custom_tooltip = obligation_for_savoy_tt
+		trigger_event = { id = natural_borders.3 popup = yes }
+		show_as_tooltip = {
+			s:STATE_PROVENCE = {
+				remove_homeland = cu:north_italian
+			}
+		}
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+REPLACE:sell_savoy = {
+	is_shown = {
+		exists = c:FRA
+		NOT = { has_global_variable = fra_annexed_savoy }
+		any_scope_state = {
+			state_region = s:STATE_PROVENCE
+			is_split_state = no
+			is_capital = no
+		}
+		is_subject = no
+	}
+
+	possible = {
+		has_technology_researched = nationalism
+		is_at_war = no
+		c:FRA ?= {
+			is_at_war = no
+			owns_entire_state_region = STATE_PROVENCE
+			is_subject = no
+			NOT = { owes_obligation_to = ROOT }
+			relations:root >= relations_threshold:cordial
+		}
+	}
+
+	when_taken = {
+		set_global_variable = fra_annexed_savoy
+		set_global_variable = fra_savoy_sardinia
+		c:FRA ?= {
+			set_owes_obligation_to = {
+				country = ROOT
+				setting = yes
+			}
+		}
+		show_as_tooltip = {
+			random_scope_state = {
+				limit = {
+					state_region = s:STATE_PROVENCE
+				}
+				set_state_owner = c:FRA
+			}
+			if = {
+				limit = {
+					any_scope_state = {
+						state_region = s:STATE_PROVENCE
+					}
+				}
+				random_scope_state = {
+					limit = {
+						state_region = s:STATE_PROVENCE
+					}
+					set_state_owner = c:FRA
+				}
+			}
+		}
+		c:FRA ?= { trigger_event = { id = natural_borders.3 popup = yes } }
+		show_as_tooltip = {
+			s:STATE_PROVENCE = {
+				remove_homeland = cu:north_italian
+			}
+		}
+	}
+
+	ai_chance = {
+		value = 0
+		if = {
+			limit = {
+				c:FRA ?= {
+					relations:root >= relations_threshold:amicable
+				}
+				OR = {
+					any_scope_treaty = {
+						binds = c:FRA
+						any_scope_article = {
+							has_type = defensive_pact
+						}
+					}
+					any_scope_treaty = {
+						binds = c:FRA
+						any_scope_article = {
+							has_type = alliance
+						}
+					}
+				}
+			}
+			add = 1
+		}
+	}
+}
+
+REPLACE:france_annex_luxembourg = {
+	is_shown = {
+		has_dlc_feature = voice_of_the_people_content
+		exists = c:FRA
+		c:FRA = ROOT
+		NOT = { has_global_variable = fra_annexed_lux }
+		is_subject = no
+		exists = c:LUX
+		c:LUX ?= {
+			is_player = no
+			is_subject = yes
+			top_overlord = {
+				NOT = { THIS = ROOT }
+				NOT = { is_subject_of = ROOT }
+				is_player = no
+			}
+		}
+	}
+
+	possible = {
+		has_technology_researched = nationalism
+		owns_entire_state_region = STATE_FLANDERS
+		taking_loans = no
+		c:LUX ?= {
+			top_overlord = {
+				is_subject = no
+				relations:root >= relations_threshold:amicable
+				is_at_war = no
+				is_revolutionary = no
+				taking_loans = yes
+			}
+		}
+	}
+
+	when_taken = {
+		set_global_variable = fra_annexed_lux
+		trigger_event = { id = natural_borders.5 popup = yes }
+		show_as_tooltip = {
+			annex = c:LUX
+			add_modifier = {
+				name = luxembourg_payment
+				months = 12
+				multiplier = 20000
+			}
+		}
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+
+# ---- grand_exhibition_decision.txt ----
+REPLACE:grand_exhibition_decision = {
+	is_shown = {
+		NOT = { has_variable = grand_exhibition_decision_taken }
+		NOT = { has_variable = held_grand_exhibition_var }
+		is_player = yes
+	}
+
+	possible = {
+		is_at_war = no
+		has_technology_researched = international_relations
+		has_technology_researched = railways
+		any_scope_building = {
+			is_building_type = building_art_academy
+			level >= 10
+		}
+		any_scope_building = {
+			is_building_type = building_university
+			level >= 10
+		}
+		trigger_if = {
+			limit = {
+				owns_entire_state_region = STATE_NORMANDY
+			}
+			any_scope_building = {
+				is_building_type = building_eiffel_tower #they held a huge exhibition there
+			}
+		}
+		trigger_else = {
+			capital = {
+				any_scope_building = {
+					is_building_type = building_urban_center
+					level >= 20
+				}
+			}
+		}
+		custom_tooltip = {
+			text = grand_exhibition_decision_custom_tooltip_2
+			NOT = { has_variable = grand_exhibition_decision_taken }
+		}
+	}
+
+	when_taken = {
+		set_variable = grand_exhibition_decision_taken
+		add_journal_entry = {
+			type = je_grand_exhibition
+		}
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+
+# ---- india_decisions.txt ----
+REPLACE:demand_return_of_koh_i_noor = {
+	is_shown = {
+		has_dlc_feature = ip2_content
+		any_primary_culture = {
+			has_discrimination_trait_group = heritage_group_south_asian
+		}
+		is_subject = no
+		country_rank >= rank_value:unrecognized_major_power
+		any_country_in_europe = {
+			has_variable = koh_i_noor
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = koh_i_noor_in_europe_tt
+			any_country_in_europe = {
+				has_variable = koh_i_noor
+			}
+		}
+		custom_tooltip = {
+			text = not_at_war_with_koh_i_noor_owner_tt
+			NOT = {
+				any_diplomatically_relevant_country = {
+					custom_tooltip = {
+						text = owns_koh_i_noor_tt
+						has_variable = koh_i_noor
+					}
+					has_war_with = ROOT
+				}
+			}
+		}
+		custom_tooltip = {
+			text = koh_i_noor_return_requested_too_recently_tt
+			NOT = {
+				has_global_variable = koh_i_noor_decision_return_demanded
+			}
+		}
+	}
+
+	when_taken = {
+		set_global_variable = { name = koh_i_noor_decision_return_demanded years = 10 }
+		random_country = {
+			limit = {
+				has_variable = koh_i_noor
+			}
+			save_scope_as = diamond_country
+			set_variable = { name = koh_i_noor_decision_user value = prev days = 180 }
+			custom_tooltip = {
+				text = demand_return_of_diamond_tt
+				trigger_event = { id = india_events.4 }
+			}
+		}
+	}
+
+	ai_chance = {
+		value = 0
+		if = {
+			limit = {
+				any_diplomatically_relevant_country = {
+					has_variable = koh_i_noor
+					relations:root <= relations_threshold:cordial
+				}
+			}
+			add = 10
+		}
+		if = {
+			limit = {
+				has_strategy = ai_strategy_armed_isolationism
+			}
+			multiply = 0
+		}
+	}
+}
+
+REPLACE:make_delhi_capital = {
+	is_shown = {
+		c:BIC ?= this
+		NOT = {
+			has_variable = made_delhi_capital_var
+		}
+		p:xE0EFA0.state.owner = root
+	}
+
+	possible = {
+		any_scope_state = {
+			state_region = s:STATE_PUNJAB
+			is_incorporated = yes
+			any_scope_building = {
+				is_building_type = building_urban_center
+				level >= 5
+			}
+		}
+		OR = {
+		    any_political_movement = {
+		        is_political_movement_type = movement_muslim_nationalist
+		        political_movement_radicalism >= 0.1
+		    }
+		    any_political_movement = {
+		        is_political_movement_type = movement_hindu_nationalist
+		        political_movement_radicalism >= 0.1
+		    }
+		    has_technology_researched = political_agitation
+		}
+	}
+
+	when_taken = {
+		if = {
+			limit = {
+				NOT = {
+					capital = {
+						state_region = s:STATE_PUNJAB
+					}
+				}
+			}
+			set_capital = STATE_PUNJAB
+		}
+		set_variable = made_delhi_capital_var
+		random_scope_state = {
+			limit = {
+				state_region = s:STATE_PUNJAB
+			}
+			add_modifier = {
+				name = new_delhi_modifier
+			}
+		}
+		add_modifier = {
+			name = new_delhi_cost_modifier
+			days = normal_modifier_time
+			multiplier = money_amount_multiplier_small
+		}
+		if = {
+			limit = {
+				any_political_movement = {
+					OR = {
+						is_political_movement_type = movement_muslim_nationalist
+						is_political_movement_type = movement_hindu_nationalist
+					}
+				}
+			}
+			every_political_movement = {
+				limit = {
+					OR = {
+						is_political_movement_type = movement_muslim_nationalist
+						is_political_movement_type = movement_hindu_nationalist
+					}
+				}
+				add_modifier = {
+					name = delhi_made_capital_modifier
+					days = normal_modifier_time
+				}
+			}
+		}
+	}
+
+	ai_chance = {
+		value = 0
+		if = {
+			limit = {
+				has_strategy = ai_strategy_armed_isolationism
+			}
+			multiply = 0
+		}
+	}
+}
+
+REPLACE:pressure_to_sell_berar_province = {
+	is_shown = {
+		c:BIC ?= this
+		is_at_war = no
+		NOT = {
+			has_variable = sold_berar_var
+		}
+		any_scope_state = {
+			state_region = s:STATE_CENTRAL_PROVINCES
+		}
+		any_neighbouring_state = {
+			state_region = s:STATE_CENTRAL_PROVINCES
+			owner = {
+				c:HYD ?= this
+				is_subject_of = root
+				is_at_war = no
+			}
+		}
+	}
+
+	possible = {
+		OR = {
+			c:HYD ?= {
+				any_scope_state = {
+					state_region = s:STATE_CENTRAL_PROVINCES
+					turmoil >= 0.2
+				}
+			}
+			AND = {
+				c:HYD ?= {
+					any_scope_state = {
+						state_region = s:STATE_CENTRAL_PROVINCES
+						is_incorporated = no
+					}
+				}
+				game_date > 1850.1.1
+			}
+			c:HYD ?= {
+				liberty_desire <= 10
+			}
+		}
+	}
+
+	when_taken = {
+		c:HYD ?= {
+			trigger_event = { id = india_events.18 }
+		}
+		custom_tooltip = if_they_accept_tt
+		show_as_tooltip = {
+			add_modifier = {
+				name = lease_of_berar_costs
+			}
+			c:HYD ?= {
+				add_modifier = {
+					name = lease_of_berar_income
+				}
+				random_scope_state = {
+					limit = {
+						state_region = s:STATE_CENTRAL_PROVINCES
+					}
+					set_state_owner = root
+				}
+			}
+		}
+		set_variable = sold_berar_var
+	}
+
+	ai_chance = {
+		value = 0
+		if = {
+			limit = {
+				game_date > 1850.1.1
+			}
+			add = 5
+		}
+		if = {
+			limit = {
+				game_date > 1860.1.1
+			}
+			add = 5
+		}
+		if = {
+			limit = {
+				any_scope_state = {
+					state_region = s:STATE_CENTRAL_PROVINCES
+					turmoil > 0.1
+				}
+			}
+			add = 10
+		}
+		if = {
+			limit = {
+				any_scope_state = {
+					state_region = s:STATE_CENTRAL_PROVINCES
+					turmoil > 0.2
+				}
+			}
+			add = 10
+		}
+		if = {
+			limit = {
+				any_scope_state = {
+					state_region = s:STATE_CENTRAL_PROVINCES
+					is_incorporated = no
+				}
+			}
+			add = 10
+		}
+	}
+}
+
+REPLACE:bic_end_company_rule = {
+	is_shown = {
+		c:BIC ?= this
+		is_subject_type = subject_type_chartered_company
+		has_variable = company_rule_enduring
+	}
+
+	possible = {
+		has_technology_researched = civilizing_mission
+	}
+
+	when_taken = {
+		top_overlord = {
+			trigger_event = { id = raj.1 }
+		}
+		custom_tooltip = activate_british_raj
+		show_as_tooltip = {
+			if = {
+				limit = {
+					has_diplomatic_pact = {
+						who = c:BIC
+						type = chartered_company
+					}
+				}
+				c:BIC ?= {
+					decrease_autonomy = yes
+				}
+			}
+			c:BIC ?= {
+				set_variable = doctrine_of_lapse_ended
+				custom_tooltip = doctrine_of_lapse_disabled
+				if = {
+					limit = {
+						has_modifier = modifier_india_company_rule
+					}
+					custom_tooltip = {
+						text = remove_modifier_india_company_rule_tt
+						remove_modifier = modifier_india_company_rule
+					}
+				}
+				if = { # Should never happen, but just in case
+					limit = {
+						has_modifier = modifier_india_company_rule_upgraded
+					}
+					custom_tooltip = {
+						text = remove_modifier_india_company_rule_upgraded_tt
+						remove_modifier = modifier_india_company_rule_upgraded
+					}
+				}
+				custom_tooltip = {
+					text = add_modifier_india_crown_rule_tt
+					add_modifier = modifier_india_crown_rule
+				}
+				if = {
+					limit = {
+						NOT = {
+							has_law_or_variant = law_type:law_appointed_bureaucrats
+						}
+					}
+					activate_law = law_type:law_appointed_bureaucrats
+				}
+				if = {
+					limit = {
+						NOT = {
+							has_law_or_variant = law_type:law_autocracy
+						}
+					}
+					activate_law = law_type:law_autocracy
+				}
+				if = {
+					limit = {
+						NOR = {
+							has_law_or_variant = law_type:law_hindu_caste_enforced
+							has_law_or_variant = law_type:law_hindu_caste_codified
+						}
+					}
+					activate_law = law_type:law_hindu_caste_codified
+				}
+				ig:ig_industrialists ?= {
+					set_interest_group_name = ig_government_of_india
+				}
+			}
+		}
+	}
+
+	ai_chance = {
+		value = 0
+		if = {
+			limit = {
+				is_at_war = yes
+			}
+			add = -5
+		}
+		if = {
+			limit = {
+				loyalist_fraction = {
+					value > 0.05
+				}
+			}
+			add = -1
+		}
+		if = {
+			limit = {
+				loyalist_fraction = {
+					value > 0.10
+				}
+			}
+			add = -2
+		}
+		if = {
+			limit = {
+				any_political_movement = {
+					movement_is_plausibly_indian_nationalist = yes
+					political_movement_radicalism < 0.1
+				}
+			}
+			add = -1
+		}
+		if = {
+			limit = {
+				any_political_movement = {
+					movement_is_plausibly_indian_nationalist = yes
+					political_movement_radicalism >= 0.1
+				}
+			}
+			add = 1
+		}
+		if = {
+			limit = {
+				any_political_movement = {
+					movement_is_plausibly_indian_nationalist = yes
+					political_movement_radicalism >= 0.2
+				}
+			}
+			add = 2
+		}
+		if = {
+			limit = {
+				any_political_movement = {
+					movement_is_plausibly_indian_nationalist = yes
+					political_movement_radicalism >= 0.3
+				}
+			}
+			add = 3
+		}
+		if = {
+			limit = {
+				any_political_movement = {
+					movement_is_plausibly_indian_nationalist = yes
+					political_movement_radicalism >= 0.4
+				}
+			}
+			add = 4
+		}
+		if = {
+			limit = {
+				any_political_movement = {
+					movement_is_plausibly_indian_nationalist = yes
+					political_movement_radicalism >= 0.5
+				}
+			}
+			add = 5
+		}
+		if = {
+			limit = {
+				game_date > 1900.1.1
+			}
+			add = 1
+		}
+		if = {
+			limit = {
+				has_ruling_interest_group = ig_industrialists
+			}
+			add = -1
+		}
+	}
+}
+
+REPLACE:bht_end_privy_purse_payments = {
+	is_shown = {
+		c:BHT ?= this
+		has_modifier = modifier_privy_purse_payments
+	}
+
+	possible = {
+		ig:ig_landowners ?= {
+			is_in_government = no
+		}
+		trigger_if = {
+			limit = {
+				is_subject = yes
+			}
+			custom_tooltip = {
+				text = no_federation_je_tt
+				NOT = {
+					has_journal_entry = je_federation_of_india
+				}
+			}
+		}
+		trigger_else = {
+			custom_tooltip = {
+				text = no_union_je_tt
+				NOT = {
+					has_journal_entry = je_federation_of_india
+				}
+			}
+		}
+	}
+
+	when_taken = {
+		remove_modifier = modifier_privy_purse_payments
+		add_radicals = {
+			value = large_radicals
+			pop_type = aristocrats
+		}
+		ig:ig_landowners ?= {
+			add_modifier = {
+				name = modifier_ended_privy_purse_payments
+				days = normal_modifier_time
+			}
+		}
+	}
+
+	ai_chance = {
+		value = -10
+		if = {
+			limit = {
+				taking_loans = yes
+			}
+			add = 5
+		}
+		if = {
+			limit = {
+				is_at_war = yes
+			}
+			add = 3
+		}
+		if = {
+			limit = {
+				scaled_debt >= 0
+			}
+			add = {
+				value = scaled_debt
+				multiply = 10
+			}
+		}
+	}
+}
+
+
+# ---- ip4_portugal_decisions.txt ----
+REPLACE:decision_revoke_banishment_law = {
+	is_shown = {
+		has_dlc_feature = ip4_content
+		c:POR ?= ROOT
+		any_character_in_void = {
+			has_template = POR_miguel_i_de_braganca_template
+		}
+	}
+
+	possible = {
+		any_interest_group = {
+			leader = {
+				character_has_miguelist_ideology = yes
+			}
+			is_in_government = yes
+		}
+	}
+
+	when_taken = {
+		every_interest_group = {
+			limit = {
+				NOT = { leader = { character_has_miguelist_ideology = yes } }
+				OR = {
+					is_interest_group_type = ig_industrialists
+					is_interest_group_type = ig_petty_bourgeoisie
+					is_interest_group_type = ig_intelligentsia
+					is_interest_group_type = ig_trade_unions
+				}
+			}
+			add_modifier = {
+				name = modifier_banishment_law_repealed
+				days = normal_modifier_time
+			}
+		}
+		add_loyalists = {
+			pop_type = aristocrats
+			value = medium_radicals
+		}
+		custom_tooltip = {
+			text = miguel_invited_back_tt
+			random_character_in_void = {
+				limit = {
+					has_template = POR_miguel_i_de_braganca_template
+				}
+				replace_character_roles = { add = { agitator } remove_all = yes }
+				free_character_from_void = yes
+			}
+		}
+	}
+
+	ai_chance = {
+		value = 10
+	}
+}
+
+REPLACE:decision_depose_ruling_dynasty = {
+	is_shown = {
+		OR = {
+			has_dlc_feature = voice_of_the_people_content
+			has_dlc_feature = ip4_content
+		}
+		OR = {
+			country_has_primary_culture = cu:french
+			country_has_primary_culture = cu:spanish
+			country_has_primary_culture = cu:portuguese
+			country_has_primary_culture = cu:iberian
+		}
+		country_has_monarchy_law = yes
+		is_revolutionary = no
+		is_secessionist = no
+	}
+
+	possible = {
+		NOR = {
+			hidden_trigger = { has_variable = coup_event_active }
+			has_journal_entry = je_ip4_coup
+			is_involved_in_journal_entry = je_the_first_carlist_war
+		}
+		any_scope_character = {
+			OR = {
+				has_role_of_type = general
+				has_role_of_type = admiral
+			}
+			hidden_trigger = {
+				has_variable = monthly_cached_commander_coup_strength
+			}
+			character_has_ideology_conflicting_with_ruling_dynasty = yes
+			NOT = { # You cannot hire a communist to install the Orleanists on the throne
+				law_stance = {
+					law = law_type:law_monarchy
+					value <= disapprove
+				}
+			}
+			loyalty < define:NCharacters|LOYALTY_UNCERTAIN_THRESHOLD
+			trigger_if = {
+				limit = {
+					has_variable = monthly_cached_commander_coup_strength
+				}
+				custom_tooltip = {
+					text = coup_strength_greater_than_coup_resistance_tt
+					var:monthly_cached_commander_coup_strength >= root.country_coup_resistance
+				}
+			}
+		}
+	}
+
+	when_taken = {
+		ordered_scope_character = {
+			limit = {
+				OR = {
+					has_role_of_type = general
+					has_role_of_type = admiral
+				}
+				has_variable = monthly_cached_commander_coup_strength
+				character_has_ideology_conflicting_with_ruling_dynasty = yes
+				NOT = { # You cannot hire a communist to install the Orleanists on the throne
+					law_stance = {
+						law = law_type:law_monarchy
+						value <= disapprove
+					}
+				}
+				var:monthly_cached_commander_coup_strength >= root.country_coup_resistance
+				loyalty < define:NCharacters|LOYALTY_UNCERTAIN_THRESHOLD
+			}
+			order_by = popularity
+			position = 0
+			save_scope_as = temp_golpista
+		}
+		if = {
+			limit = {
+				exists = scope:temp_golpista
+			}
+			custom_tooltip = {
+				text = begin_dynastic_coup_tt
+			}
+			scope:temp_golpista ?= {
+				set_variable = commander_doing_coup_on_player_behalf
+				add_modifier = {
+					name = modifier_dynastic_coup
+					days = short_modifier_time
+				}
+			}
+			if = {
+				limit = {
+					exists = scope:temp_golpista
+				}
+				create_coup_from_character = {
+					CHARACTER = scope:temp_golpista
+				}
+			}
+		}
+		else = {
+			custom_tooltip = begin_dynastic_coup_scopeless_tt
+		}
+	}
+
+	ai_chance = {
+		value = 10
+	}
+}
+
+REPLACE:decision_reorganize_iberian_crowns = {
+	is_shown = {
+		has_dlc_feature = ip4_content
+		c:POR ?= ROOT
+		country_has_monarchy_law = yes
+		NOT = {
+			has_variable = reorganized_iberia_var
+		}
+	}
+
+	possible = {
+		OR = {
+			c:SPA ?= {
+				is_subject_of = ROOT
+				NOT = {
+					is_subject_type = subject_type_personal_union
+				}
+			}
+			AND = {
+				custom_tooltip = {
+					text = spa_does_not_exist_tt
+					NOT = {
+						exists = c:SPA
+					}
+				}
+				owns_entire_state_region = STATE_CATALONIA
+			}
+		}
+	}
+
+	when_taken = {
+		set_variable = reorganized_iberia_var
+		if = {
+			limit = {
+				exists = c:SPA
+				c:SPA ?= {
+					is_subject_of = ROOT
+				}
+			}
+			c:SPA ?= {
+				if = {
+					limit = {
+						NOT = {
+							has_law = ROOT.active_law:lawgroup_governance_principles.type
+						}
+					}
+					activate_law = ROOT.active_law:lawgroup_governance_principles.type
+				}
+				change_subject_type = subject_type_personal_union
+			}
+		}
+		else_if = {
+			limit = {
+				AND = {
+					NOT = {
+						exists = c:SPA
+					}
+					owns_entire_state_region = STATE_CATALONIA
+				}
+			}
+			random_scope_state = {
+				limit = {
+					state_region = s:STATE_CATALONIA
+				}
+				save_scope_as = castile_scope
+			}
+			custom_tooltip = {
+				text = portugal_spawn_spain_tt
+				create_country = {
+					origin = root
+					tag = SPA
+					state = scope:castile_scope
+					on_created = {
+					}
+				}
+				every_state_in_castile = {
+					limit = {
+						OR = {
+							owner ?= ROOT
+							owner = {
+								is_subject_of = ROOT
+							}
+						}
+						NOT = {
+							c:SPA ?= owner
+						}
+						state_region = {
+							is_homeland = cu:spanish
+						}
+					}
+					set_state_owner = c:SPA
+				}
+				every_state_in_aragon = {
+					limit = {
+						OR = {
+							owner ?= ROOT
+							owner = {
+								is_subject_of = ROOT
+							}
+						}
+						NOT = {
+							c:SPA ?= owner
+						}
+						state_region = {
+							is_homeland = cu:spanish
+						}
+					}
+					set_state_owner = c:SPA
+				}
+			}
+			create_diplomatic_pact = {
+				country = c:SPA
+				type = personal_union
+			}
+		}
+		else = {
+			custom_tooltip = {
+				text = portugal_spawn_spain_tt
+			}
+		}
+	}
+
+	ai_chance = {
+		value = 10 # You never know
+	}
+}
+
+REPLACE:decision_restore_kingdom_of_brazil = {
+	is_shown = {
+		has_dlc_feature = ip4_content
+		c:POR ?= ROOT
+		country_has_monarchy_law = yes
+		NOT = {
+			has_variable = restored_kingdom_of_brazil_var
+		}
+	}
+
+	possible = {
+		OR = {
+			c:BRZ ?= {
+				is_subject_of = ROOT
+				NOT = {
+					is_subject_type = subject_type_personal_union
+				}
+			}
+			AND = {
+				custom_tooltip = {
+					text = brz_does_not_exist_tt
+					NOT = {
+						exists = c:BRZ
+					}
+				}
+				owns_entire_state_region = STATE_RIO_DE_JANEIRO
+			}
+		}
+	}
+
+	when_taken = {
+		set_variable = restored_kingdom_of_brazil_var
+		if = {
+			limit = {
+				exists = c:BRZ
+				c:BRZ ?= {
+					is_subject_of = ROOT
+				}
+			}
+			c:BRZ ?= {
+				set_variable = kingdom_var
+				if = {
+					limit = {
+						NOT = {
+							has_law = ROOT.active_law:lawgroup_governance_principles.type
+						}
+					}
+					activate_law = ROOT.active_law:lawgroup_governance_principles.type
+				}
+				change_subject_type = subject_type_personal_union
+			}
+		}
+		else_if = {
+			limit = {
+				AND = {
+					NOT = {
+						exists = c:BRZ
+					}
+					owns_entire_state_region = STATE_RIO_DE_JANEIRO
+				}
+			}
+			random_scope_state = {
+				limit = {
+					state_region = s:STATE_RIO_DE_JANEIRO
+				}
+				save_scope_as = rio_scope
+			}
+			custom_tooltip = {
+				text = portugal_spawn_brazil_tt
+				create_country = {
+					origin = root
+					tag = BRZ
+					state = scope:rio_scope
+					on_created = {
+						set_variable = kingdom_var
+					}
+				}
+				every_state_in_brazil = {
+					limit = {
+						OR = {
+							owner ?= ROOT
+							owner = {
+								is_subject_of = ROOT
+							}
+						}
+						NOT = {
+							c:BRZ ?= owner
+						}
+					}
+					set_state_owner = c:BRZ
+				}
+			}
+			create_diplomatic_pact = {
+				country = c:BRZ
+				type = personal_union
+			}
+		}
+		else = {
+			custom_tooltip = {
+				text = portugal_spawn_brazil_tt
+			}
+		}
+	}
+
+	ai_chance = {
+		value = 100
+	}
+}
+
+
+# ---- manifest_destiny.txt ----
+REPLACE:manifest_destiny = {
+
+	is_shown = {
+		exists = c:USA
+		c:USA ?= ROOT
+		NOT = { has_variable = manifested_destiny }
+	}
+
+	possible = {
+		has_technology_researched = nationalism
+		OR = {
+			has_interest_marker_in_region = sr:region_pacific_coast
+			sr:region_great_plains = {
+				any_scope_state = {
+					percent = 0.4
+					owner = {
+						OR = {
+							this = root
+							is_subject_of = root
+						}
+					}
+				}
+			}
+		}
+	}
+
+	when_taken = {
+		if = {
+			limit = {
+				owns_entire_state_region = STATE_CALIFORNIA
+				owns_entire_state_region = STATE_CALIFORNIA
+				owns_entire_state_region = STATE_CALIFORNIA
+				owns_entire_state_region = STATE_CALIFORNIA
+				owns_entire_state_region = STATE_MONTANA
+				owns_entire_state_region = STATE_MISSISSIPPI
+			}
+			trigger_event = { id = manifest_destiny.1 }
+		}
+		else = {
+			add_journal_entry = {
+				type = je_manifest_destiny_mexico
+			}
+		}
+		if = {
+			limit = {
+				owns_entire_state_region = STATE_MONTANA
+				owns_entire_state_region = STATE_MONTANA
+				owns_entire_state_region = STATE_MONTANA
+				owns_entire_state_region = STATE_MONTANA
+				owns_entire_state_region = STATE_MONTANA
+				owns_entire_state_region = STATE_MONTANA
+				owns_entire_state_region = STATE_MONTANA
+			}
+			trigger_event = { id = manifest_destiny.2 }
+		}
+		else = {
+			add_journal_entry = {
+				type = je_manifest_destiny_frontier_wars
+			}
+		}
+		ig:ig_landowners ?= {
+			add_modifier = {
+				name = ig_manifest_destiny
+				days = normal_modifier_time
+			}
+		}
+		ig:ig_intelligentsia ?= {
+			add_modifier = {
+				name = ig_manifest_destiny
+				days = normal_modifier_time
+				multiplier = -1
+			}
+		}
+		if = {
+			limit = {
+				exists = c:MEX
+			}
+			create_incident = {
+				country = c:MEX
+				value = 20
+			}
+		}
+		# Add Claims
+		s:STATE_CALIFORNIA = {
+			if = {
+				limit = {
+					any_scope_state = {
+						 NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT
+			}
+		}
+		s:STATE_CALIFORNIA = {
+			if = {
+				limit = {
+					any_scope_state = {
+						NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT
+			}
+		}
+		s:STATE_CALIFORNIA = {
+			if = {
+				limit = {
+					any_scope_state = {
+						NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT
+			}
+		}
+		s:STATE_CALIFORNIA = {
+			if = {
+				limit = {
+					any_scope_state = {
+						NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT
+			}
+		}
+		s:STATE_MONTANA = {
+			if = {
+				limit = {
+					any_scope_state = {
+						NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT
+			}
+		}
+		s:STATE_MISSISSIPPI = {
+			if = {
+				limit = {
+					any_scope_state = {
+						NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT
+			}
+		}
+		s:STATE_MONTANA = {
+			if = {
+				limit = {
+					any_scope_state = {
+						NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT
+			}
+		}
+		s:STATE_MONTANA = {
+			if = {
+				limit = {
+					any_scope_state = {
+						NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT
+			}
+		}
+		s:STATE_MONTANA = {
+			if = {
+				limit = {
+					any_scope_state = {
+						NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT
+			}
+		}
+		s:STATE_MONTANA = {
+			if = {
+				limit = {
+					any_scope_state = {
+						NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT
+			}
+		}
+		s:STATE_MONTANA = {
+			if = {
+				limit = {
+					any_scope_state = {
+						NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT
+			}
+		}
+		s:STATE_MONTANA = {
+			if = {
+				limit = {
+					any_scope_state = {
+						NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT
+			}
+		}
+		s:STATE_MONTANA = {
+			if = {
+				limit = {
+					any_scope_state = {
+						NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT
+			}
+		}
+		s:STATE_MISSISSIPPI = {
+			if = {
+				limit = {
+					any_scope_state = {
+						NOT = {
+							owner = ROOT
+						}
+					}
+				}
+				add_claim = ROOT
+			}
+		}
+		set_variable = manifested_destiny
+	}
+
+	ai_chance = {
+		value = 10
+	}
+}
+
+
+# ---- pink_map_decision.txt ----
+REPLACE:pink_map = {
+	is_shown = {
+		has_dlc_feature = ip4_content
+		OR = {
+			c:POR ?= this
+			c:IBE ?= this
+		}
+		is_subject = no
+		NOT = {
+			has_variable = pink_map_sent
+		}
+		has_variable = portuguese_colonialism_je_completed
+	}
+
+	possible = {
+		any_scope_state = {
+			OR = {
+				state_region = s:STATE_ZANZIBAR
+				state_region = s:STATE_BAS_CONGO
+				state_region = s:STATE_CAPE_COLONY
+			}
+			is_under_colonization = yes
+		}
+	}
+
+	when_taken = {
+		set_variable = pink_map_seeking
+		if = {
+			limit = {
+				exists = c:GBR
+			}
+			c:GBR ?= {
+				trigger_event = {
+					id = portuguese_colonialism.4
+				}
+			}
+			custom_tooltip = pink_map_tt2
+		}
+		else = {
+			add_journal_entry = {
+				type = je_the_pink_map
+			}
+			s:STATE_ZANZIBAR = {
+				add_claim = ROOT
+			}
+			s:STATE_BAS_CONGO = {
+				add_claim = ROOT
+			}
+			s:STATE_CAPE_COLONY = {
+				add_claim = ROOT
+			}
+		}
+		set_variable = pink_map_sent
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+
+# ---- revoke_fernando_po_lease_decision.txt ----
+REPLACE:revoke_fernando_po = {
+	is_shown = {
+		exists = c:GBR
+		c:SPA ?= ROOT
+		is_subject = no
+		NOT = {
+			has_variable = revoke_fernando_po_lease_demand_sent
+		}
+		s:STATE_BAS_CONGO = {
+			p:x902089.state = {
+				owner = {
+					OR = {
+						c:GBR ?= THIS
+						is_subject_of = c:GBR
+					}
+				}
+			}
+		}
+	}
+
+	possible = {
+		c:GBR ?= {
+			relations:root >= relations_threshold:amicable
+		}
+	}
+
+	when_taken = {
+		custom_tooltip = revoke_fernando_po_tt
+		hidden_effect = {
+			c:GBR ?= {
+				trigger_event = {
+					id = spanish_africa.6
+				}
+			}
+		}
+		set_variable = revoke_fernando_po_lease_demand_sent
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}

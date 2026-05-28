@@ -1,0 +1,1112 @@
+﻿# ---- 00_formable_countries.txt ----
+REPLACE:GBR = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:ENG = {
+	states = {
+		STATE_HOME_COUNTIES
+		STATE_HOME_COUNTIES
+		STATE_HOME_COUNTIES
+		STATE_HOME_COUNTIES
+		STATE_HOME_COUNTIES
+		STATE_HOME_COUNTIES
+	}
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:UCA = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.5
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:RUS = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+}
+
+
+REPLACE:IRE = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:FRA = {
+	states = {
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_PROVENCE
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_FLANDERS
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_PROVENCE
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_NORMANDY
+	}
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:SWE = {
+	states = {
+		STATE_SVEALAND
+		STATE_SVEALAND
+		STATE_SVEALAND
+		STATE_SVEALAND
+	}
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = no }
+}
+
+REPLACE:LAO = {
+	states = {
+		STATE_BANGKOK
+	}
+
+	required_states_fraction = 1.0
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:UBD = {
+	use_culture_states = yes
+
+	required_states_fraction = 1
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = pan-nationalism
+	}
+}
+
+REPLACE:BYZ = {
+	states = {
+		STATE_EASTERN_THRACE
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_ATTICA
+		STATE_EASTERN_THRACE
+		STATE_EASTERN_THRACE
+		STATE_ATTICA
+		STATE_EASTERN_THRACE
+		STATE_ATTICA
+	}
+
+	required_states_fraction = 1.0
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		country_has_monarchy_law = yes
+		custom_tooltip = {
+			text = byzantium_button_check_tt
+			has_variable = embrace_ambitious_agenda_var # from greece.2.a, associated with je_greek_nationalism
+		}
+		NOT = { has_game_rule = plausible_formable_nations }
+	}
+}
+
+REPLACE:PLC = {
+	states = {
+		STATE_VITEBSK
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_RIGA
+		STATE_RIGA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_CRIMEA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+	}
+
+	required_states_fraction = 1
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:PRU = {
+	states = {
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_HANNOVER
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+	}
+
+	required_states_fraction = 0.8
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:CHI = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.6
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:ETH = {
+	states = {
+		STATE_ERITREA
+		STATE_ERITREA
+		STATE_ERITREA
+		# intentionally omitting STATE_ERITREA
+	}
+
+	required_states_fraction = 0.33 # just unifying Gonder would suffice
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:AOT = {
+	use_culture_states = yes
+
+	required_states_fraction = 1.0
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:WIN = {
+	STATES = {
+		STATE_WESTERN_CUBA
+		STATE_WESTERN_CUBA
+	}
+
+	required_states_fraction = 1
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:IBE = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.9
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = pan-nationalism
+		trigger_if = {
+			limit = {
+				capital ?= {
+					is_in_geographic_region = geographic_region_iberia_old
+				}
+				any_country_in_iberia_old = {
+					is_subject_of = ROOT
+				}
+			}
+			custom_tooltip = {
+				text = all_iberian_subjects_below_75_ld_tt
+				any_country_in_iberia_old = {
+					filter = {
+						is_subject_of = ROOT
+					}
+					liberty_desire < 75
+					count = all
+				}
+			}
+		}
+	}
+}
+
+REPLACE:CLM = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.8
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:BRZ = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.8
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:SPA = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:MEX = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:KUK = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = pan-nationalism
+		OR = {
+			has_law_or_variant = law_type:law_multicultural
+			has_law_or_variant = law_type:law_subjecthood
+		}
+	}
+}
+
+REPLACE:USA = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:FSA = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_law_or_variant = law_type:law_slavery_banned
+	}
+}
+
+REPLACE:CZH = {
+	STATES = {
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+	}
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		NOR = {
+			c:AUS ?= this
+			c:KUK ?= this
+		}
+	}
+}
+
+REPLACE:CAN = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = nationalism
+	}
+}
+
+REPLACE:AST = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = nationalism
+	}
+}
+
+REPLACE:POL = {
+	states = {
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+	}
+
+	required_states_fraction = 0.55
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		NOR = {
+			c:AUS ?= this
+			c:KUK ?= this
+		}
+	}
+}
+
+REPLACE:ROM = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.375 # Romania has 8 possible homeland states total, 3 are required.
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		NOR = {
+			c:AUS ?= this
+			c:KUK ?= this
+		}
+	}
+}
+
+REPLACE:ARA = {
+	states = {
+		STATE_OMAN
+		STATE_OMAN
+		STATE_OMAN
+		STATE_OMAN
+		STATE_OMAN
+		STATE_OMAN
+		STATE_OMAN
+		STATE_OMAN
+		STATE_OMAN
+		STATE_OMAN
+		STATE_OMAN
+		STATE_OMAN
+		STATE_OMAN
+		STATE_OMAN
+		STATE_OMAN
+		STATE_LOWER_EGYPT
+		STATE_LOWER_EGYPT
+		STATE_LOWER_EGYPT
+		STATE_LOWER_EGYPT
+		STATE_LOWER_EGYPT
+		STATE_LOWER_EGYPT
+	}
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = pan-nationalism
+	}
+}
+
+REPLACE:GCO = {
+	states = {
+		STATE_MIRANDA
+		STATE_LIMA
+		STATE_MIRANDA
+		STATE_MIRANDA
+		STATE_MIRANDA
+		STATE_MIRANDA
+		STATE_MIRANDA
+		STATE_MIRANDA
+	}
+
+	required_states_fraction = 0.85
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		always = yes
+	}
+}
+
+
+REPLACE:ZIM = {
+	states = {
+		STATE_CAPE_COLONY
+	}
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:BLH = {
+	states = {
+		STATE_BOMBAY
+		STATE_LARISTAN
+		STATE_LARISTAN
+	}
+
+	required_states_fraction = 0.33
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = nationalism
+		NOR = {
+			c:BHT ?= this
+			c:BIC ?= this
+		}
+	}
+}
+
+REPLACE:NGF = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.75
+
+	possible = {
+		has_technology_researched = nationalism
+	}
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:SGF = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:MAL = {
+	states = {
+		STATE_SENEGAL
+		STATE_SENEGAL
+		STATE_SENEGAL
+		STATE_SENEGAL
+		STATE_SENEGAL
+		STATE_SENEGAL
+	}
+
+	required_states_fraction = 0.5
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:TRH = {
+	states = {
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_LARISTAN
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+	}
+
+	required_states_fraction = 0.4
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = pan-nationalism
+	}
+}
+
+REPLACE:IDN = {
+	states = {
+		STATE_NORTH_SUMATRA
+		STATE_WEST_JAVA
+		STATE_WEST_BORNEO
+		STATE_WEST_JAVA
+		STATE_BANGKOK
+		STATE_CELEBES
+		STATE_CELEBES
+		STATE_WEST_BORNEO
+		STATE_NORTH_SUMATRA
+		STATE_NORTH_SUMATRA
+		STATE_WEST_JAVA
+		STATE_WEST_BORNEO
+		STATE_WESTERN_NEW_GUINEA
+		STATE_WEST_JAVA
+	}
+
+	required_states_fraction = 0.65
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = pan-nationalism
+
+	}
+}
+
+REPLACE:BHT = {
+	states = {
+		STATE_WEST_BENGAL
+		STATE_CENTRAL_PROVINCES
+		STATE_BOMBAY
+		STATE_WEST_BENGAL
+		STATE_BOMBAY
+		STATE_CENTRAL_PROVINCES
+		STATE_MYSORE
+		STATE_MYSORE
+		STATE_PUNJAB
+		STATE_BOMBAY
+		STATE_MYSORE
+		STATE_HIMALAYAS
+		STATE_MYSORE
+		STATE_MYSORE
+		STATE_CENTRAL_PROVINCES
+		STATE_WEST_BENGAL
+		STATE_WEST_BENGAL
+		STATE_LARISTAN
+		STATE_PUNJAB
+		STATE_PUNJAB
+		STATE_BOMBAY
+		STATE_WEST_BENGAL
+		STATE_MYSORE
+		STATE_MYSORE
+		STATE_CENTRAL_PROVINCES
+		STATE_CENTRAL_PROVINCES
+		STATE_PUNJAB
+		STATE_LARISTAN
+	}
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = pan-nationalism
+	}
+}
+
+REPLACE:YEM = {
+	states = {
+		STATE_OMAN
+	}
+
+	required_states_fraction = 1
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:CAU = {
+	states = {
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+	}
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = pan-nationalism
+	}
+}
+
+REPLACE:PNS = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.7 # Basically as long as you've colonized
+
+	possible = {
+		has_technology_researched = pan-nationalism
+	}
+}
+
+REPLACE:KAZ = {
+	states = {
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+	}
+
+	required_states_fraction = 0.5
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = nationalism
+	}
+}
+
+REPLACE:ALD = {
+	states = {
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+	}
+
+	required_states_fraction = 1
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:PEU = {
+	states = {
+		STATE_LIMA
+		STATE_LIMA
+		STATE_LIMA
+		STATE_LIMA
+		STATE_LIMA
+	}
+
+	required_states_fraction = 0.8
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:UNL = {
+	states = {
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_FLANDERS
+	}
+
+	required_states_fraction = 1
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:RHN = {
+	states = {
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_HANNOVER
+		STATE_HANNOVER
+	}
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = nationalism
+		NOR = {
+			c:PRU ?= this
+			c:AUS ?= this
+			c:NGF ?= this
+			c:SGF ?= this
+		}
+	}
+}
+
+REPLACE:HRE = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = no }
+
+	possible = {
+		NOT = { has_game_rule = plausible_formable_nations }
+		is_in_geographic_region = geographic_region_europe
+	}
+}
+
+REPLACE:CLI = {
+	states = {
+		STATE_MISSISSIPPI
+		STATE_MISSISSIPPI
+	}
+
+	required_states_fraction = 1
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		OR = {
+			c:NCR ?= this
+			c:SCR ?= this
+		}
+		NOT = { has_game_rule = plausible_formable_nations }
+	}
+}
+
+REPLACE:AFG = {
+	states = {
+		STATE_LARISTAN
+		STATE_LARISTAN
+		STATE_LARISTAN
+		STATE_LARISTAN
+		STATE_LARISTAN
+		STATE_LARISTAN
+		STATE_LARISTAN
+		STATE_LARISTAN
+	}
+
+	required_states_fraction = 0.5
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:TWT = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.5
+
+	ai_will_do = { always = no }
+
+	possible = {
+		has_technology_researched = nationalism
+	}
+}
+
+REPLACE:PLT = {
+	states = {
+		STATE_BUENOS_AIRES
+		STATE_BUENOS_AIRES
+		STATE_BUENOS_AIRES
+		STATE_BUENOS_AIRES
+		STATE_RIO_DE_JANEIRO
+		STATE_BUENOS_AIRES
+		STATE_BUENOS_AIRES
+		STATE_BUENOS_AIRES
+		STATE_BUENOS_AIRES
+		STATE_BUENOS_AIRES
+		STATE_LIMA
+		STATE_BUENOS_AIRES
+	}
+
+	required_states_fraction = 0.85
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		always = yes
+	}
+}
+
+REPLACE:PAK = {
+	states = {
+		STATE_BOMBAY
+		STATE_LARISTAN
+		STATE_HIMALAYAS
+		STATE_PUNJAB
+		STATE_BOMBAY
+		STATE_LARISTAN
+	}
+
+	required_states_fraction = 0.80 # 5/6 states needed
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = pan-nationalism
+		country_has_state_religion = rel:sunni
+	}
+}
+
+REPLACE:MGB = {
+	states = {
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_SENEGAL
+		STATE_SENEGAL
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+	}
+
+	required_states_fraction = 0.5
+
+	ai_will_do = { always = no }
+
+	possible = {
+		has_technology_researched = pan-nationalism
+	}
+}
+
+REPLACE:ORI = {
+	use_culture_states = yes
+
+	required_states_fraction = 1
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = nationalism
+		NOR = { # Some really strange things can happen during British Indian civil wars. Temporary fix pending investigation.
+			c:BHT ?= this
+			c:BIC ?= this
+		}
+	}
+}
+
+REPLACE:RAJ = {
+	use_culture_states = yes
+
+	required_states_fraction = 1
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = nationalism
+		NOR = {
+			c:BHT ?= this
+			c:BIC ?= this
+		}
+	}
+}
+
+REPLACE:GUJ = {
+	use_culture_states = yes
+
+	required_states_fraction = 1
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = nationalism
+		NOR = {
+			c:BHT ?= this
+			c:BIC ?= this
+		}
+	}
+}
+
+REPLACE:MHR = {
+	use_culture_states = yes
+
+	required_states_fraction = 1
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		NOR = {
+			c:BHT ?= this
+			c:BIC ?= this
+		}
+	}
+}
+
+REPLACE:PAN = {
+	use_culture_states = yes
+
+	required_states_fraction = 1
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		NOR = {
+			c:BHT ?= this
+			c:BIC ?= this
+		}
+	}
+}
+
+REPLACE:MUG = {
+	use_culture_states = yes
+
+	required_states_fraction = 1
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:DRA = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = pan-nationalism
+		NOR = {
+			c:BHT ?= this
+			c:BIC ?= this
+		}
+	}
+}
+
+REPLACE:CAR = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.75
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		NOR = {
+			c:BHT ?= this
+			c:BIC ?= this
+		}
+	}
+}
+
+REPLACE:BGL = {
+	use_culture_states = yes
+
+	required_states_fraction = 0.5
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		NOR = {
+			c:BHT ?= this
+			c:BIC ?= this
+		}
+	}
+
+}
+
+REPLACE:GAL = {
+	states = {
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+	}
+
+	required_states_fraction = 1
+
+	ai_will_do = { always = yes }
+}
+
+REPLACE:UZB = {
+	states = {
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+	}
+
+	required_states_fraction = 0.66
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = nationalism
+	}
+}
+
+REPLACE:KYR = {
+	states = {
+		STATE_UZBEKIA
+	}
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = nationalism
+	}
+}
+
+REPLACE:TJI = {
+	states = {
+		STATE_UZBEKIA
+		STATE_LARISTAN
+	}
+
+	required_states_fraction = 0.5
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = nationalism
+	}
+}
+
+REPLACE:LBY = {
+	states = {
+		STATE_TUNISIA
+		STATE_TUNISIA
+		STATE_TUNISIA
+	}
+
+	required_states_fraction = 1
+
+	ai_will_do = { always = yes }
+
+	potential = {
+		capital.state_region ?= {
+			OR = {
+				this = s:STATE_TUNISIA
+				this = s:STATE_TUNISIA
+				this = s:STATE_TUNISIA
+			}
+		}
+	}
+
+	possible = {
+		has_technology_researched = nationalism
+	}
+}
+
+REPLACE:ATL = {
+	states = {
+		STATE_WESTERN_CUBA
+		STATE_WESTERN_CUBA
+		STATE_WESTERN_CUBA
+		STATE_WESTERN_CUBA
+		STATE_WESTERN_CUBA
+	}
+
+	required_states_fraction = 0.8
+
+	ai_will_do = { always = yes }
+
+	possible = {
+		has_technology_researched = pan-nationalism
+	}
+}
