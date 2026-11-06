@@ -144,9 +144,9 @@ company_rheinmetall = {
 			is_incorporated = yes
 			any_scope_building = {
 				OR = {
-					is_building_type = building_arms_industry
 					is_building_type = building_artillery_foundry
 					is_building_type = building_munition_plant
+					is_building_type = building_explosives_factory
 				}
 				level >= 5
 			}
@@ -171,6 +171,16 @@ company_rheinmetall = {
 	}
 
 	ai_construction_targets = {
+		building_artillery_foundry = {
+			level = 5
+			state_trigger = {
+				OR = {
+					state_region = s:STATE_FLANDERS
+					state_region = s:STATE_FLANDERS
+				}
+				is_incorporated = yes
+			}
+		}
 		building_munition_plant = {
 			level = 5
 			state_trigger = {
@@ -181,17 +191,7 @@ company_rheinmetall = {
 				is_incorporated = yes
 			}
 		}
-		building_arms_industry = {
-			level = 5
-			state_trigger = {
-				OR = {
-					state_region = s:STATE_FLANDERS
-					state_region = s:STATE_FLANDERS
-				}
-				is_incorporated = yes
-			}
-		}
-		building_artillery_foundry = {
+		building_explosives_factory = {
 			level = 5
 			state_trigger = {
 				OR = {
@@ -323,13 +323,11 @@ company_siemens_and_halske = {
 
 	possible = {
 		has_technology_researched = electric_telegraph
-		any_scope_state = {
-			state_region = s:STATE_HANNOVER
+		has_building_levels_in_state_region = {
+			region = STATE_HANNOVER
+			building = building_electrics_industry
+			levels >= 5
 			is_incorporated = yes
-			any_scope_building = {
-				is_building_type = building_electrics_industry
-				level >= 5
-			}
 		}
 	}
 
@@ -461,13 +459,11 @@ company_basf = {
 
 	possible = {
 		has_technology_researched = aniline
-		any_scope_state = {
-			state_region = s:STATE_AUSTRIA
+		has_building_levels_in_state_region = {
+			region = STATE_AUSTRIA
+			building = building_synthetics_plant
+			levels >= 5
 			is_incorporated = yes
-			any_scope_building = {
-				is_building_type = building_synthetics_plant
-				level >= 5
-			}
 		}
 	}
 

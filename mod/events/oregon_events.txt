@@ -139,7 +139,7 @@ oregon.2 = {
 					}
 					s:STATE_CALIFORNIA = {
 						random_scope_state = {
-							set_state_name = STATE_BRITISH_COLUMBIA_british
+							set_state_name = STATE_CALIFORNIA_british
 						}
 					}
 				}

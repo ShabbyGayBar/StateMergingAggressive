@@ -16,7 +16,7 @@ assign_state_name_region_the_midwest = { # region_atlantic_coast
                 s:STATE_CALIFORNIA ?= this
             }
         }
-        STATE_WASHINGTON_state_name_assign = yes
+        STATE_CALIFORNIA_state_name_assign = yes
     }
 }
 
@@ -38,7 +38,7 @@ assign_state_name_region_pacific_coast = { # region_pacific_coast
                 s:STATE_CALIFORNIA ?= this
             }
         }
-        STATE_WASHINGTON_state_name_assign = yes
+        STATE_CALIFORNIA_state_name_assign = yes
     }
     else_if = {
         limit = {
@@ -46,7 +46,7 @@ assign_state_name_region_pacific_coast = { # region_pacific_coast
                 s:STATE_CALIFORNIA ?= this
             }
         }
-        STATE_BRITISH_COLUMBIA_state_name_assign = yes
+        STATE_CALIFORNIA_state_name_assign = yes
     }
 }
 
@@ -57,7 +57,7 @@ assign_state_name_region_dixie = { # region_dixie
                 s:STATE_MISSISSIPPI ?= this
             }
         }
-        STATE_DISTRICT_OF_COLUMBIA_state_name_assign = yes
+        STATE_MISSISSIPPI_state_name_assign = yes
     }
 }
 
@@ -68,7 +68,7 @@ assign_state_name_region_brazil = { # region_brazil
                 s:STATE_RIO_DE_JANEIRO ?= this
             }
         }
-        STATE_SANTA_CATARINA_state_name_assign = yes
+        STATE_RIO_DE_JANEIRO_state_name_assign = yes
     }
 }
 
@@ -87,7 +87,7 @@ assign_state_name_region_caribbean = { # region_caribbean
                 s:STATE_WESTERN_CUBA ?= this
             }
         }
-        STATE_CENTRAL_CUBA_state_name_assign = yes
+        STATE_WESTERN_CUBA_state_name_assign = yes
     }
     else_if = {
         limit = {
@@ -95,7 +95,7 @@ assign_state_name_region_caribbean = { # region_caribbean
                 s:STATE_WESTERN_CUBA ?= this
             }
         }
-        STATE_EASTERN_CUBA_state_name_assign = yes
+        STATE_WESTERN_CUBA_state_name_assign = yes
     }
     else_if = {
         limit = {
@@ -103,7 +103,7 @@ assign_state_name_region_caribbean = { # region_caribbean
                 s:STATE_WESTERN_CUBA ?= this
             }
         }
-        STATE_HAITI_state_name_assign = yes
+        STATE_WESTERN_CUBA_state_name_assign = yes
     }
     else_if = {
         limit = {
@@ -111,7 +111,15 @@ assign_state_name_region_caribbean = { # region_caribbean
                 s:STATE_WESTERN_CUBA ?= this
             }
         }
-        STATE_SANTO_DOMINGO_state_name_assign = yes
+        STATE_WESTERN_CUBA_state_name_assign = yes
+    }
+    else_if = {
+        limit = {
+            state_region = {
+                s:STATE_WESTERN_CUBA ?= this
+            }
+        }
+        STATE_WESTERN_CUBA_state_name_assign = yes
     }
 }
 
@@ -145,7 +153,7 @@ STATE_OHIO_state_name_assign = {
     }
 }
 
-STATE_WASHINGTON_state_name_assign = {
+STATE_CALIFORNIA_state_name_assign = {
 	if = {
 		limit = {
 			owner = {
@@ -153,17 +161,17 @@ STATE_WASHINGTON_state_name_assign = {
 			}
 		}
 
-        set_state_name = STATE_WASHINGTON_usa
+        set_state_name = STATE_CALIFORNIA_usa
 
         set_hub_name = {
             type = city
-            name = HUB_NAME_STATE_WASHINGTON_city_usa
+            name = HUB_NAME_STATE_CALIFORNIA_city_usa
         }
 	}
 	# no name reversion effect in an else statement. If the state becomes Washington, it stays Washington.
 }
 
-STATE_BRITISH_COLUMBIA_state_name_assign = { # More likely that British Columbia gets its name from conclusion of Oregon JE, but this serves as a one-off fallback
+STATE_CALIFORNIA_state_name_assign = { # More likely that British Columbia gets its name from conclusion of Oregon JE, but this serves as a one-off fallback
 	if = {
 		limit = {
 			owner = {
@@ -187,12 +195,12 @@ STATE_BRITISH_COLUMBIA_state_name_assign = { # More likely that British Columbia
 			}
 		}
 
-        set_state_name = STATE_BRITISH_COLUMBIA_british
+        set_state_name = STATE_CALIFORNIA_british
 	}
 	# no name reversion effect in an else statement. If the state becomes British Columbia, it stays British Columbia.
 }
 
-STATE_ONTARIO_state_name_assign = {	# this effect is also covered by completing je_canada_can or je_canada_gbr but I am redundantly covering all bases in a redundant manner
+STATE_ONTARIO_state_name_assign = {	# this effect is also covered by completing je_canada but I am redundantly covering all bases in a redundant manner
 	if = {
 		limit = {
 			owner = {
@@ -212,7 +220,7 @@ STATE_ONTARIO_state_name_assign = {	# this effect is also covered by completing 
 	# no name reversion effect in an else statement. If the city hub becomes Ottawa, it stays Ottawa
 }
 
-STATE_DISTRICT_OF_COLUMBIA_state_name_assign = {
+STATE_MISSISSIPPI_state_name_assign = {
     if = {
         limit = {
             owner = {
@@ -230,7 +238,7 @@ STATE_DISTRICT_OF_COLUMBIA_state_name_assign = {
 
         set_hub_name = {
             type = city
-            name = HUB_NAME_STATE_DISTRICT_OF_COLUMBIA_city_uk
+            name = HUB_NAME_STATE_MISSISSIPPI_city_uk
         }
     }
     else = { # switch back to defaults
@@ -239,7 +247,7 @@ STATE_DISTRICT_OF_COLUMBIA_state_name_assign = {
     }
 }
 
-STATE_SANTA_CATARINA_state_name_assign = {
+STATE_RIO_DE_JANEIRO_state_name_assign = {
     if = {
         limit = {
             owner = {
@@ -253,7 +261,7 @@ STATE_SANTA_CATARINA_state_name_assign = {
 
         set_hub_name = {
             type = port
-            name = HUB_NAME_STATE_SANTA_CATARINA_port_bra_republic
+            name = HUB_NAME_STATE_RIO_DE_JANEIRO_port_bra_republic
         }
     }
     else = { # switch back to defaults
@@ -281,7 +289,7 @@ STATE_WESTERN_CUBA_state_name_assign = {
     }
 }
 
-STATE_CENTRAL_CUBA_state_name_assign = {
+STATE_WESTERN_CUBA_state_name_assign = {
     if = {
         limit = {
             owner = {
@@ -291,7 +299,7 @@ STATE_CENTRAL_CUBA_state_name_assign = {
             }
         }
 
-        set_state_name = STATE_CENTRAL_CUBA_spanish
+        set_state_name = STATE_WESTERN_CUBA_spanish
         set_hub_names = spanish
     }
     else = { # switch back to defaults
@@ -300,7 +308,7 @@ STATE_CENTRAL_CUBA_state_name_assign = {
     }
 }
 
-STATE_EASTERN_CUBA_state_name_assign = {
+STATE_WESTERN_CUBA_state_name_assign = {
     if = {
         limit = {
             owner = {
@@ -310,7 +318,7 @@ STATE_EASTERN_CUBA_state_name_assign = {
             }
         }
 
-        set_state_name = STATE_EASTERN_CUBA_spanish
+        set_state_name = STATE_WESTERN_CUBA_spanish
         set_hub_names = spanish
     }
     else = { # switch back to defaults
@@ -319,7 +327,7 @@ STATE_EASTERN_CUBA_state_name_assign = {
     }
 }
 
-STATE_HAITI_state_name_assign = {
+STATE_WESTERN_CUBA_state_name_assign = {
     if = {
         limit = {
             owner = {
@@ -334,7 +342,7 @@ STATE_HAITI_state_name_assign = {
                     }
                 }
             }
-            set_state_name = STATE_HAITI_french_haiti_whole
+            set_state_name = STATE_WESTERN_CUBA_french_haiti_whole
         }
         else_if = {
             limit = {
@@ -346,7 +354,7 @@ STATE_HAITI_state_name_assign = {
                     }
                 }
             }
-            set_state_name = STATE_HAITI_french_haiti_part
+            set_state_name = STATE_WESTERN_CUBA_french_haiti_part
         }
 
         set_hub_names = french_haiti
@@ -367,7 +375,7 @@ STATE_HAITI_state_name_assign = {
                     }
                 }
             }
-            set_state_name = STATE_HAITI_french_whole
+            set_state_name = STATE_WESTERN_CUBA_french_whole
         }
         else_if = {
             limit = {
@@ -379,7 +387,7 @@ STATE_HAITI_state_name_assign = {
                     }
                 }
             }
-            set_state_name = STATE_HAITI_french_part
+            set_state_name = STATE_WESTERN_CUBA_french_part
         }
 
         set_hub_names = french
@@ -400,7 +408,7 @@ STATE_HAITI_state_name_assign = {
                     }
                 }
             }
-            set_state_name = STATE_HAITI_spanish_whole
+            set_state_name = STATE_WESTERN_CUBA_spanish_whole
         }
         else_if = {
             limit = {
@@ -412,7 +420,7 @@ STATE_HAITI_state_name_assign = {
                     }
                 }
             }
-            set_state_name = STATE_HAITI_spanish_part
+            set_state_name = STATE_WESTERN_CUBA_spanish_part
         }
 
         set_hub_names = spanish
@@ -423,14 +431,14 @@ STATE_HAITI_state_name_assign = {
     }
 }
 
-STATE_SANTO_DOMINGO_state_name_assign = {
+STATE_WESTERN_CUBA_state_name_assign = {
     if = {
         limit = {
             owner = {
                 c:HAI ?= this
             }
         }
-        set_state_name = STATE_SANTO_DOMINGO_french_haiti_whole
+        set_state_name = STATE_WESTERN_CUBA_french_haiti_whole
         set_hub_names = french_haiti
     }
     else_if = {
@@ -449,7 +457,7 @@ STATE_SANTO_DOMINGO_state_name_assign = {
                     }
                 }
             }
-            set_state_name = STATE_SANTO_DOMINGO_french_whole
+            set_state_name = STATE_WESTERN_CUBA_french_whole
         }
         else_if = {
             limit = {
@@ -461,7 +469,7 @@ STATE_SANTO_DOMINGO_state_name_assign = {
                     }
                 }
             }
-            set_state_name = STATE_SANTO_DOMINGO_french_part
+            set_state_name = STATE_WESTERN_CUBA_french_part
         }
 
         set_hub_names = french
@@ -482,7 +490,7 @@ STATE_SANTO_DOMINGO_state_name_assign = {
                     }
                 }
             }
-            set_state_name = STATE_SANTO_DOMINGO_spanish_whole
+            set_state_name = STATE_WESTERN_CUBA_spanish_whole
         }
         else_if = {
             limit = {
@@ -494,10 +502,32 @@ STATE_SANTO_DOMINGO_state_name_assign = {
                     }
                 }
             }
-            set_state_name = STATE_SANTO_DOMINGO_spanish_part
+            set_state_name = STATE_WESTERN_CUBA_spanish_part
         }
 
         set_hub_names = spanish
+    }
+    else = { # switch back to defaults
+        reset_state_name = yes
+        reset_hub_names = yes
+    }
+}
+
+STATE_WESTERN_CUBA_state_name_assign = {
+    if = {
+        limit = {
+            owner = {
+                any_primary_culture = {
+                    has_discrimination_trait = language_hispanophone
+                }
+            }
+        }
+
+        set_state_name = STATE_WESTERN_CUBA_spanish
+        set_hub_name = {
+            type = farm
+            name = HUB_NAME_STATE_WESTERN_CUBA_farm_spanish
+        }
     }
     else = { # switch back to defaults
         reset_state_name = yes

@@ -6,8 +6,6 @@ lands_of_anarchy.1 = { # Initial event
 
 	duration = 2
 
-	dlc = dlc016
-
 	title = lands_of_anarchy.1.t
 	desc = lands_of_anarchy.1.d
 	flavor = lands_of_anarchy.1.f
@@ -100,8 +98,6 @@ lands_of_anarchy.2 = { # Complete Event
 	placement = root
 
 	duration = 3
-
-	dlc = dlc016
 
 	title = lands_of_anarchy.2.t
 	desc = lands_of_anarchy.2.d
@@ -255,6 +251,9 @@ lands_of_anarchy.2 = { # Complete Event
 			}
 		}
 	}
+	after = {
+		je_lands_of_anarchy_cleanup = yes
+	}
 }
 
 lands_of_anarchy.3 = { # Fail Event
@@ -262,8 +261,6 @@ lands_of_anarchy.3 = { # Fail Event
 	placement = root
 
 	duration = 3
-
-	dlc = dlc016
 
 	title = lands_of_anarchy.3.t
 	desc = lands_of_anarchy.3.d
@@ -414,6 +411,9 @@ lands_of_anarchy.3 = { # Fail Event
 			days = long_modifier_time
 		}
 	}
+	after = {
+		je_lands_of_anarchy_cleanup = yes
+	}
 }
 
 lands_of_anarchy.4 = { # Tribe leader as IG leader
@@ -421,8 +421,6 @@ lands_of_anarchy.4 = { # Tribe leader as IG leader
 	placement = root
 
 	duration = 3
-
-	dlc = dlc016
 
 	title = lands_of_anarchy.4.t
 	desc = lands_of_anarchy.4.d
@@ -470,6 +468,7 @@ lands_of_anarchy.4 = { # Tribe leader as IG leader
 	}
 
 	trigger = {
+		# triggered by journal entry - je_lands_of_anarchy [on_monthly_pulse]
 		any_scope_character = {
 			NOT = {
 				has_modifier = lands_of_anarchy_tribal_marrakech_leader_mod
@@ -489,14 +488,16 @@ lands_of_anarchy.4 = { # Tribe leader as IG leader
 		custom_tooltip = {
 			text = lands_of_anarchy.4.a_tt
 			create_character = {
-				ig_leader = yes
+				role = character_role_politician
 				interest_group = scope:armed_forces_scope
 				culture = cu:berber
 				ideology = ideology_jingoist_leader
 				age = 40
 				on_created = {
+					set_temporary_event_immortality = { DURATION = 3 }
 					add_modifier = lands_of_anarchy_tribal_marrakech_leader_mod
 				}
+				save_scope_as = tribal_leader_scope
 			}
 		}
 		add_modifier = {
@@ -519,14 +520,16 @@ lands_of_anarchy.4 = { # Tribe leader as IG leader
 		custom_tooltip = {
 			text = lands_of_anarchy.4.b_tt
 			create_character = {
-				ig_leader = yes
+				role = character_role_politician
 				interest_group = scope:devout_scope
 				culture = cu:berber
 				ideology = ideology_theocrat
 				age = 40
 				on_created = {
+					set_temporary_event_immortality = { DURATION = 3 }
 					add_modifier = lands_of_anarchy_tribal_al_rif_leader_mod
 				}
+				save_scope_as = tribal_leader_scope
 			}
 		}
 		add_modifier = {
@@ -549,14 +552,16 @@ lands_of_anarchy.4 = { # Tribe leader as IG leader
 		custom_tooltip = {
 			text = lands_of_anarchy.4.c_tt
 			create_character = {
-				ig_leader = yes
+				role = character_role_politician
 				interest_group = scope:rural_folk_scope
 				culture = cu:berber
 				ideology = ideology_anarchist
 				age = 40
 				on_created = {
+					set_temporary_event_immortality = { DURATION = 3 }
 					add_modifier = lands_of_anarchy_tribal_inner_morocco_leader_mod
 				}
+				save_scope_as = tribal_leader_scope
 			}
 		}
 		add_modifier = {
@@ -586,6 +591,12 @@ lands_of_anarchy.4 = { # Tribe leader as IG leader
 			base = 0
 		}
 	}
+	after = {
+		scope:tribal_leader_scope ?= {
+			set_as_interest_group_leader = yes
+		}
+		revoke_temporary_event_immortality = { CHARACTER = scope:tribal_leader_scope }
+	}
 }
 
 lands_of_anarchy.5 = { # Urban Medicine
@@ -593,8 +604,6 @@ lands_of_anarchy.5 = { # Urban Medicine
 	placement = scope:anarchy_state_scope
 
 	duration = 3
-
-	dlc = dlc016
 
 	title = lands_of_anarchy.5.t
 	desc = lands_of_anarchy.5.d
@@ -626,6 +635,7 @@ lands_of_anarchy.5 = { # Urban Medicine
 	}
 
 	trigger = {
+		# triggered by journal entry - je_lands_of_anarchy [on_monthly_pulse]
 
 	}
 
@@ -644,7 +654,7 @@ lands_of_anarchy.5 = { # Urban Medicine
 		}
 		scope:anarchy_state_scope ?= {
 			add_modifier = {
-				name = lands_of_anarchy_tribe_recieved_medicine_mod
+				name = lands_of_anarchy_tribe_received_medicine_mod
 				days = short_modifier_time
 			}
 		}
@@ -656,13 +666,20 @@ lands_of_anarchy.5 = { # Urban Medicine
 	}
 	option = {
 		name = lands_of_anarchy.5.b
+		trigger = {
+			authority >= 75
+		}
+		show_as_unavailable = {
+			always = yes
+		}
+		highlighted_option = yes
 		add_modifier = {
 			name = lands_of_anarchy_made_the_rich_send_medicine_to_tribes_mod
 			days = normal_modifier_time
 		}
 		scope:anarchy_state_scope ?= {
 			add_modifier = {
-				name = lands_of_anarchy_tribe_recieved_medicine_mod
+				name = lands_of_anarchy_tribe_received_medicine_mod
 				days = short_modifier_time
 			}
 		}

@@ -209,7 +209,6 @@
     "STATE_OKHOTSK": [
         "STATE_YAKUTSK",
         "STATE_TRANS_BAIKAL",
-        "STATE_CHUKOTKA",
         "STATE_KAMCHATKA",
         "STATE_IRKUTSK",
         "STATE_BURYATIA",
@@ -425,8 +424,10 @@
         "STATE_RYAZAN",
         "STATE_TAMBOV",
         "STATE_NIZHNY_NOVGOROD",
-        "STATE_TARTARIA",
-        "STATE_CHUVASHIA"
+        "STATE_SARATOV",
+        "STATE_CHUVASHIA",
+        "STATE_TULA",
+        "STATE_KOSTROMA"
     ],
     "STATE_CRIMEA": [
         "STATE_CHERSON",
@@ -445,7 +446,7 @@
         "STATE_VILNIUS",
         "STATE_COURLAND",
         "STATE_TARTU",
-        "STATE_KAUNAS",
+        "STATE_LITHUANIA",
         "STATE_TALINN"
     ],
     "STATE_UUSIMAA": [
@@ -458,7 +459,7 @@
         "STATE_EAST_KARELIA"
     ],
     "STATE_ARKHANGELSK": [
-        "STATE_GALICH",
+        "STATE_VOLOGDA",
         "STATE_NENETSIA"
     ],
     "STATE_UFA": [

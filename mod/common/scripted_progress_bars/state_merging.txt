@@ -28,20 +28,18 @@ REPLACE:je_cuba_total_bar = {
  			
  	second_desc = "je_cuba_independencia_bar"
 
- 	double_sided_gold = yes
+	progress_texture = "gfx/interface/progressbar/progressbar_default.dds"
+	background_texture = "gfx/interface/progressbar/progressbar_gold.dds"
+	marker = yes
+	left_icon = "gfx/interface/progressbar/greatgame_bear_marker.dds"
+	right_icon = "gfx/interface/progressbar/greatgame_lion_marker.dds"
 
 	monthly_progress = {
-		if = {
+		progress_condition = {
 			limit = {
-				s:STATE_MISSISSIPPI = {
-					any_scope_state = {
-						owner = {
-							OR = {
-								c:USA ?= this
-								c:CSA ?= this
-							}
-						}
-					}
+				OR = {
+					c:USA ?= { has_or_is_contesting_state_in_state_region = STATE_MISSISSIPPI }
+					c:CSA ?= { has_or_is_contesting_state_in_state_region = STATE_MISSISSIPPI }
 				}
 				OR = {
 					exists = c:CUB
@@ -62,11 +60,11 @@ REPLACE:je_cuba_total_bar = {
 				subtract = owner.var:independencia_current
 				multiply = je_cuba_drift_factor 
 			}
-		}
-		else = {
-			add = {
-				add = 1000
-				desc = usa_does_not_exist_tt
+			else = {
+				add = {
+					add = 1000
+					desc = usa_does_not_exist_tt
+				}
 			}
 		}
 	}
@@ -89,7 +87,7 @@ REPLACE:lands_of_anarchy_tribes_of_marrakech_bar = {
 	monthly_progress = {
 		owner = {
 			# Ruler popularity
-			if = {
+			progress_condition = {
 				limit = {
 					OR = {
 					ruler.popularity < 0
@@ -182,7 +180,7 @@ REPLACE:lands_of_anarchy_tribes_of_marrakech_bar = {
 				}
 			}
 			# On Harka
-			if = {
+			progress_condition = {
 				limit = {
 					has_modifier = lands_of_anarchy_harka_mod
 				}
@@ -192,7 +190,7 @@ REPLACE:lands_of_anarchy_tribes_of_marrakech_bar = {
 				}
 			}
 			# lands_of_anarchy.4 - appointed IG tribe leader
-			if = {
+			progress_condition = {
 				limit = {
 					owner = {
 						any_scope_character = {
@@ -206,7 +204,7 @@ REPLACE:lands_of_anarchy_tribes_of_marrakech_bar = {
 				}
 			}
 			# lands_of_anarchy.4 - rejected IG tribe leader
-			if = {
+			progress_condition = {
 				limit = {
 					has_variable = tribal_leader_appointment_rejected
 				}
@@ -216,10 +214,10 @@ REPLACE:lands_of_anarchy_tribes_of_marrakech_bar = {
 				}
 			}
 			# lands_of_anarchy.5 - sent medicine
-			if = {
+			progress_condition = {
 				limit = {
 					s:STATE_TUNISIA.region_state:MOR ?= {
-						has_modifier = lands_of_anarchy_tribe_recieved_medicine_mod
+						has_modifier = lands_of_anarchy_tribe_received_medicine_mod
 					}
 				}
 				add = {
@@ -228,7 +226,7 @@ REPLACE:lands_of_anarchy_tribes_of_marrakech_bar = {
 				}
 			}
 			# lands_of_anarchy.5 - refused to send medicine
-			if = {
+			progress_condition = {
 				limit = {
 					s:STATE_TUNISIA.region_state:MOR ?= {
 						has_modifier = lands_of_anarchy_refused_medicine_mod
@@ -240,14 +238,10 @@ REPLACE:lands_of_anarchy_tribes_of_marrakech_bar = {
 				}
 			}
 			# The state is not ours anymore
-			if = {
+			progress_condition = {
 				limit = {
-					s:STATE_TUNISIA = {
-						NOT = {
-							any_scope_state = {
-								owner = root.owner
-							}
-						}
+					root = {
+						NOT = { has_or_is_contesting_state_in_state_region = STATE_TUNISIA }
 					}
 				}
 				subtract = {
@@ -270,7 +264,7 @@ REPLACE:lands_of_anarchy_tribes_of_al_rif_bar = {
 
 	monthly_progress = {
 		owner = {
-			if = {
+			progress_condition = {
 				limit = {
 					OR = {
 					ruler.popularity < 0
@@ -335,7 +329,7 @@ REPLACE:lands_of_anarchy_tribes_of_al_rif_bar = {
 				}
 			}
 			# Negative authority
-			if = {
+			progress_condition = {
 				limit = {
 						authority < 0
 				}
@@ -372,7 +366,7 @@ REPLACE:lands_of_anarchy_tribes_of_al_rif_bar = {
 				}
 			}
 			# On Harka
-			if = {
+			progress_condition = {
 				limit = {
 					has_modifier = lands_of_anarchy_harka_mod
 				}
@@ -382,7 +376,7 @@ REPLACE:lands_of_anarchy_tribes_of_al_rif_bar = {
 				}
 			}
 			# lands_of_anarchy.4 - appointed IG tribe leader
-			if = {
+			progress_condition = {
 				limit = {
 					owner = {
 						any_scope_character = {
@@ -396,7 +390,7 @@ REPLACE:lands_of_anarchy_tribes_of_al_rif_bar = {
 				}
 			}
 			# lands_of_anarchy.4 - rejected IG tribe leader
-			if = {
+			progress_condition = {
 				limit = {
 					has_variable = tribal_leader_appointment_rejected
 				}
@@ -406,10 +400,10 @@ REPLACE:lands_of_anarchy_tribes_of_al_rif_bar = {
 				}
 			}
 			# lands_of_anarchy.5 - sent medicine
-			if = {
+			progress_condition = {
 				limit = {
 					s:STATE_TUNISIA.region_state:MOR ?= {
-						has_modifier = lands_of_anarchy_tribe_recieved_medicine_mod
+						has_modifier = lands_of_anarchy_tribe_received_medicine_mod
 					}
 				}
 				add = {
@@ -418,7 +412,7 @@ REPLACE:lands_of_anarchy_tribes_of_al_rif_bar = {
 				}
 			}
 			# lands_of_anarchy.5 - refused to send medicine
-			if = {
+			progress_condition = {
 				limit = {
 					s:STATE_TUNISIA.region_state:MOR ?= {
 						has_modifier = lands_of_anarchy_refused_medicine_mod
@@ -430,14 +424,10 @@ REPLACE:lands_of_anarchy_tribes_of_al_rif_bar = {
 				}
 			}
 			# The state is not ours anymore
-			if = {
+			progress_condition = {
 				limit = {
-					s:STATE_TUNISIA = {
-						NOT = {
-							any_scope_state = {
-								owner = root
-							}
-						}
+					root = {
+						NOT = { has_or_is_contesting_state_in_state_region = STATE_TUNISIA }
 					}
 				}
 				subtract = {
@@ -460,7 +450,7 @@ REPLACE:lands_of_anarchy_tribes_of_inner_morocco_bar = {
 
 	monthly_progress = {
 		owner = {
-			if = {
+			progress_condition = {
 				limit = {
 					OR = {
 					ruler.popularity < 0
@@ -552,7 +542,7 @@ REPLACE:lands_of_anarchy_tribes_of_inner_morocco_bar = {
 				}
 			}
 			# On Harka
-			if = {
+			progress_condition = {
 				limit = {
 					has_modifier = lands_of_anarchy_harka_mod
 				}
@@ -562,7 +552,7 @@ REPLACE:lands_of_anarchy_tribes_of_inner_morocco_bar = {
 				}
 			}
 			# lands_of_anarchy.4 - appointed IG tribe leader
-			if = {
+			progress_condition = {
 				limit = {
 					owner = {
 						any_scope_character = {
@@ -576,7 +566,7 @@ REPLACE:lands_of_anarchy_tribes_of_inner_morocco_bar = {
 				}
 			}
 			# lands_of_anarchy.4 - rejected IG tribe leader
-			if = {
+			progress_condition = {
 				limit = {
 					has_variable = tribal_leader_appointment_rejected
 				}
@@ -586,10 +576,10 @@ REPLACE:lands_of_anarchy_tribes_of_inner_morocco_bar = {
 				}
 			}
 			# lands_of_anarchy.5 - sent medicine
-			if = {
+			progress_condition = {
 				limit = {
 					s:STATE_TUNISIA.region_state:MOR ?= {
-						has_modifier = lands_of_anarchy_tribe_recieved_medicine_mod
+						has_modifier = lands_of_anarchy_tribe_received_medicine_mod
 					}
 				}
 				add = {
@@ -598,7 +588,7 @@ REPLACE:lands_of_anarchy_tribes_of_inner_morocco_bar = {
 				}
 			}
 			# lands_of_anarchy.5 - refused to send medicine
-			if = {
+			progress_condition = {
 				limit = {
 					s:STATE_TUNISIA.region_state:MOR ?= {
 						has_modifier = lands_of_anarchy_refused_medicine_mod
@@ -610,14 +600,10 @@ REPLACE:lands_of_anarchy_tribes_of_inner_morocco_bar = {
 				}
 			}
 			# The state is not ours anymore
-			if = {
+			progress_condition = {
 				limit = {
-					s:STATE_TUNISIA = {
-						NOT = {
-							any_scope_state = {
-								owner = root
-							}
-						}
+					root = {
+						NOT = { has_or_is_contesting_state_in_state_region = STATE_TUNISIA }
 					}
 				}
 				subtract = {

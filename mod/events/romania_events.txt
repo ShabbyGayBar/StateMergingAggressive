@@ -110,6 +110,7 @@ romania.2 = {
 	immediate = {
         random_country = {
         	limit = {
+				is_in_geographic_region = geographic_region_greater_romania
 	        	NOT = { this = ROOT }
 	        	country_has_primary_culture = cu:romanian
 	            relations:root >= 25
@@ -302,6 +303,10 @@ romania.3 = {
 #			base = 0
 #		}
 #	}
+
+	after = {
+		je_all_for_one_cleanup = yes
+	}
 }
 
 # South Bessarabia Cession
@@ -338,6 +343,7 @@ romania.4 = {
 				OR = {
     				has_variable = ROM_united_principality
     				AND = {
+						is_in_geographic_region = geographic_region_greater_romania
 						country_has_primary_culture = cu:romanian
     					is_subject = yes
     					top_overlord ?= {

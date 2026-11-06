@@ -2,7 +2,7 @@
   "name" : "States Merging - Aggressive",
 	"id" : "3553174702",
   "version" : "0.0.0",
-  "supported_game_version" : "1.13.*",
+  "supported_game_version" : "1.15.*",
   "short_description" : "Combines multiple states together while keeping the overall pop & buildings unchanged.",
   "thumbnail": "thumbnail.png",
   "tags" : ["Gameplay", "Map"],

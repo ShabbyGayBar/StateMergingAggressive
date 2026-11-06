@@ -355,20 +355,118 @@ REPLACE:geographic_region_greater_bulgaria = {
 	}
 }
 
-REPLACE:geographic_region_north_andes = { # North Andean homelands
-	short_key = "north_andes"
+REPLACE:geographic_region_northwestern_russia = {
+	short_key = "northwestern_russia"
 
 	state_regions = {
-		STATE_LIMA
-		STATE_MIRANDA
-		STATE_MIRANDA
-		STATE_MIRANDA
-		STATE_MIRANDA
-		STATE_MIRANDA
-		STATE_MIRANDA
-		STATE_MIRANDA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_ARKHANGELSK
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_ARKHANGELSK
+		STATE_ARKHANGELSK
 	}
 }
+
+REPLACE:geographic_region_central_russia = {
+	short_key = "central_russia"
+
+	state_regions = {
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+	}
+}
+
+REPLACE:geographic_region_southern_russia = {
+	short_key = "southern_russia"
+
+	state_regions = {
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+	}
+}
+
+REPLACE:geographic_region_russian_eurasia = {
+	short_key = "russian_eurasia"
+
+	strategic_regions = {
+		sr:region_eastern_europe
+		sr:region_russia
+		sr:region_siberia
+		sr:region_central_asia
+		sr:region_northeast_asia
+	}
+}
+
+REPLACE:geographic_region_russian_siberia = {
+	short_key = "russian_siberia"
+
+	state_regions = {
+		STATE_OKHOTSK
+		STATE_OKHOTSK
+		STATE_OKHOTSK
+		STATE_OKHOTSK
+		STATE_OKHOTSK
+		STATE_TOMSK
+		STATE_TOMSK
+		STATE_TOMSK
+		STATE_TOMSK
+		STATE_TOMSK
+		STATE_TOMSK
+		STATE_TOMSK
+		STATE_TOMSK
+	}
+}
+
+REPLACE:geographic_region_priamurye = {
+	short_key = "priamurye"
+
+	state_regions = {
+		STATE_SHENGJING
+		STATE_SHENGJING
+		STATE_OKHOTSK
+		STATE_OKHOTSK
+	}
+}
+
+REPLACE:geographic_region_transcaucasia = {
+	short_key = "transcaucasia"
+
+	state_regions = {
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+	}
+}
+
+REPLACE:geographic_region_austria = {
+	short_key = "austria"
+
+	state_regions = {
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_LAZIO
+	}
+}
+
 
 # ---- 02_geographic_regions_america.txt ----
 REPLACE:geographic_region_north_america = {
@@ -574,6 +672,22 @@ REPLACE:geographic_region_northern_mexico = {
 	}
 }
 
+
+REPLACE:geographic_region_north_andes = { # North Andean homelands
+	short_key = "north_andes"
+
+	state_regions = {
+		STATE_LIMA
+		STATE_MIRANDA
+		STATE_MIRANDA
+		STATE_MIRANDA
+		STATE_MIRANDA
+		STATE_MIRANDA
+		STATE_MIRANDA
+		STATE_MIRANDA
+	}
+}
+
 REPLACE:geographic_region_latin_america = {
 	short_key = "latin_america"
 
@@ -602,6 +716,43 @@ REPLACE:geographic_region_greater_canada = {
 		STATE_CALIFORNIA
 		STATE_CALIFORNIA
 		STATE_CALIFORNIA
+	}
+}
+
+REPLACE:geographic_region_canadian_confederation = {
+	short_key = "canadian_confederation"
+
+	state_regions = {
+		STATE_ONTARIO
+		STATE_ONTARIO
+		STATE_ONTARIO
+		STATE_ONTARIO
+		STATE_ONTARIO
+		STATE_MONTANA
+		STATE_MONTANA
+		STATE_CALIFORNIA
+		STATE_MONTANA
+		STATE_MONTANA
+		STATE_CALIFORNIA
+		STATE_MASSACHUSETTS
+	}
+}
+
+REPLACE:geographic_region_southern_cone = {
+	short_key = "southern_cone"
+
+	state_regions = {
+		STATE_RIO_DE_JANEIRO
+		STATE_BUENOS_AIRES
+		STATE_BUENOS_AIRES
+		STATE_BUENOS_AIRES
+		STATE_BUENOS_AIRES
+		STATE_BUENOS_AIRES
+		STATE_BUENOS_AIRES
+		STATE_BUENOS_AIRES
+		STATE_BUENOS_AIRES
+		STATE_BUENOS_AIRES
+		STATE_LIMA
 	}
 }
 
@@ -1105,6 +1256,33 @@ REPLACE:geographic_region_gujarat_bombay_line = {
 	}
 }
 
+REPLACE:geographic_region_qing_empire = {
+	short_key = "qing_empire"
+
+	strategic_regions = {
+		sr:region_south_china
+		sr:region_north_china
+	}
+
+	state_regions = {
+		STATE_SHENGJING
+		STATE_SHENGJING
+		STATE_SHENGJING
+		STATE_SHENGJING
+		STATE_SHENGJING
+		STATE_HIMALAYAS
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_TOMSK
+		STATE_TOMSK
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_HIMALAYAS
+		STATE_HIMALAYAS
+		STATE_HIMALAYAS
+	}
+}
+
 # ---- 05_geographic_regions_content.txt ----
 REPLACE:geographic_region_wet_process_coffee_region = {
 	short_key = "wet_process_region"
@@ -1199,6 +1377,433 @@ REPLACE:geographic_region_krakatoa_tsunami_zone = {
 
 		# Madras
 		STATE_MYSORE STATE_MYSORE STATE_MYSORE STATE_MYSORE STATE_MYSORE STATE_MYSORE STATE_MYSORE
+	}
+}
+
+REPLACE:geographic_region_east_slavic_states = {
+	short_key = "east_slavic_states"
+
+	state_regions = {
+		# Belarusian homelands
+		STATE_VITEBSK STATE_VITEBSK STATE_VITEBSK STATE_VITEBSK
+
+		# Ukrainian homelands
+		STATE_BESSARABIA STATE_BESSARABIA STATE_CRIMEA STATE_CRIMEA STATE_CRIMEA STATE_WEST_PRUSSIA STATE_CRIMEA STATE_CRIMEA STATE_BESSARABIA STATE_CRIMEA STATE_CRIMEA
+
+		# Russian homelands - European Russia
+		STATE_ARKHANGELSK STATE_GREATER_CAUCASUS STATE_ARKHANGELSK STATE_INGRIA STATE_UUSIMAA STATE_INGRIA STATE_INGRIA STATE_INGRIA STATE_INGRIA STATE_INGRIA STATE_INGRIA STATE_GREATER_CAUCASUS STATE_INGRIA STATE_UFA STATE_INGRIA STATE_GREATER_CAUCASUS STATE_INGRIA STATE_INGRIA STATE_INGRIA STATE_INGRIA STATE_INGRIA
+
+		# Russian homelands - Volga, Urals and Caucasus
+		STATE_UFA STATE_INGRIA STATE_UFA STATE_ARKHANGELSK STATE_UFA STATE_UFA STATE_UFA STATE_UFA
+
+		# Russian homelands - Siberia and the Far East
+		STATE_TOMSK STATE_OKHOTSK STATE_UUSIMAA STATE_OKHOTSK STATE_OKHOTSK STATE_TOMSK STATE_OKHOTSK STATE_TOMSK STATE_INGRIA STATE_TOMSK STATE_TOMSK STATE_OKHOTSK STATE_TOMSK STATE_OKHOTSK
+	}
+}
+
+REPLACE:geographic_region_diocese_of_kamchatka = {
+	short_key = "diocese_of_kamchatka"
+
+	state_regions = {
+		STATE_OKHOTSK
+		STATE_CALIFORNIA
+		STATE_KANTO
+		STATE_OKHOTSK
+	}
+}
+
+REPLACE:geographic_region_baltic_governorates = {
+	short_key = "baltic_governorates"
+
+	state_regions = {
+		STATE_RIGA
+		STATE_RIGA
+		STATE_RIGA
+		STATE_RIGA
+	}
+}
+
+REPLACE:geographic_region_congress_poland = {
+	short_key = "congress_poland"
+
+	state_regions = {
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+	}
+}
+
+REPLACE:geographic_region_finland = {
+	short_key = "finland"
+
+	state_regions = {
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+	}
+}
+
+REPLACE:geographic_region_russia_western_borderlands = { # for je_russification
+	short_key = "russia_western_borderlands"
+
+	state_regions = {
+
+		# geographic_region_finland_old
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+
+		# geographic_region_baltic_states_old
+		STATE_RIGA
+		STATE_RIGA
+		STATE_RIGA
+		STATE_RIGA
+		STATE_RIGA
+		STATE_RIGA
+
+		# geographic_region_poland_old
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+	}
+}
+
+REPLACE:geographic_region_trans_siberian_line = {
+	short_key = "trans_siberian_line"
+
+	state_regions = {
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_UFA
+		STATE_UFA
+		STATE_UFA
+		STATE_UFA
+		STATE_TOMSK
+		STATE_TOMSK
+		STATE_TOMSK
+		STATE_OKHOTSK
+		STATE_OKHOTSK
+		STATE_OKHOTSK
+	}
+}
+
+REPLACE:geographic_region_french_revolution_zone = {
+	short_key = "french_revolution_zone"
+
+	state_regions = {
+		# France
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_PROVENCE
+		STATE_PROVENCE
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_FLANDERS
+		STATE_NORMANDY
+		STATE_PROVENCE
+		STATE_PROVENCE
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_NORMANDY
+		STATE_NORMANDY
+		# Italy
+		STATE_LAZIO
+		STATE_LAZIO
+		STATE_LAZIO
+		STATE_LAZIO
+		STATE_LAZIO
+		STATE_LAZIO
+		STATE_LAZIO
+		STATE_LAZIO
+		STATE_LAZIO
+		STATE_LAZIO
+		STATE_LAZIO
+		STATE_LAZIO
+		STATE_LAZIO
+		STATE_LAZIO
+		STATE_LAZIO
+		STATE_LAZIO
+		# Benelux
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_FLANDERS
+		# Germany minus Austria
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_WEST_PRUSSIA
+		STATE_FLANDERS
+		STATE_HANNOVER
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_FLANDERS
+		STATE_HANNOVER
+		STATE_WEST_PRUSSIA
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_HANNOVER
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+		STATE_AUSTRIA
+	}
+}
+
+REPLACE:geographic_region_rcw_north = {
+	short_key = "rcw_north"
+
+	state_regions = {
+		STATE_ARKHANGELSK
+		STATE_ARKHANGELSK
+		STATE_ARKHANGELSK
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+	}
+}
+
+REPLACE:geographic_region_rcw_petrograd = {
+	short_key = "rcw_petrograd"
+
+	state_regions = {
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+	}
+}
+
+REPLACE:geographic_region_rcw_central = {
+	short_key = "rcw_central"
+
+	state_regions = {
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
+	}
+}
+
+REPLACE:geographic_region_rcw_volga = {
+	short_key = "rcw_volga"
+
+	state_regions = {
+		STATE_UFA
+		STATE_INGRIA
+		STATE_UFA
+		STATE_INGRIA
+	}
+}
+
+REPLACE:geographic_region_rcw_urals = {
+	short_key = "rcw_urals"
+
+	state_regions = {
+		STATE_UFA
+		STATE_UFA
+		STATE_UFA
+		STATE_UFA
+		STATE_UFA
+	}
+}
+
+REPLACE:geographic_region_rcw_south = {
+	short_key = "rcw_south"
+
+	state_regions = {
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+	}
+}
+
+REPLACE:geographic_region_rcw_ukraine = {
+	short_key = "rcw_ukraine"
+
+	state_regions = {
+		STATE_CRIMEA
+		STATE_CRIMEA
+		STATE_CRIMEA
+		STATE_CRIMEA
+		STATE_CRIMEA
+		STATE_CRIMEA
+		STATE_CRIMEA
+		STATE_WEST_PRUSSIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+		STATE_BESSARABIA
+	}
+}
+
+REPLACE:geographic_region_rcw_west = {
+	short_key = "rcw_west"
+
+	state_regions = {
+		STATE_VITEBSK
+		STATE_VITEBSK
+		STATE_VITEBSK
+		STATE_VITEBSK
+		STATE_RIGA
+		STATE_RIGA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+		STATE_WEST_PRUSSIA
+	}
+}
+
+REPLACE:geographic_region_rcw_baltic = {
+	short_key = "rcw_baltic"
+
+	state_regions = {
+		STATE_RIGA
+		STATE_RIGA
+		STATE_RIGA
+		STATE_RIGA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+		STATE_UUSIMAA
+	}
+}
+
+REPLACE:geographic_region_rcw_west_siberia = {
+	short_key = "rcw_west_siberia"
+
+	state_regions = {
+		STATE_TOMSK
+		STATE_TOMSK
+		STATE_TOMSK
+		STATE_TOMSK
+		STATE_TOMSK
+	}
+}
+
+REPLACE:geographic_region_rcw_east_siberia = {
+	short_key = "rcw_east_siberia"
+
+	state_regions = {
+		STATE_TOMSK
+		STATE_TOMSK
+		STATE_OKHOTSK
+		STATE_OKHOTSK
+		STATE_TOMSK
+		STATE_OKHOTSK
+		STATE_OKHOTSK
+		STATE_BEIJING
+		STATE_BEIJING
+	}
+}
+
+REPLACE:geographic_region_rcw_far_east = {
+	short_key = "rcw_far_east"
+
+	state_regions = {
+		STATE_SHENGJING
+		STATE_SHENGJING
+		STATE_OKHOTSK
+		STATE_OKHOTSK
+		STATE_OKHOTSK
+		STATE_KANTO
+		STATE_SHENGJING
+		STATE_BEIJING
+		STATE_SHENGJING
+		STATE_SHENGJING
+	}
+}
+
+REPLACE:geographic_region_rcw_steppe = {
+	short_key = "rcw_steppe"
+
+	state_regions = {
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+	}
+}
+
+REPLACE:geographic_region_rcw_turkestan = {
+	short_key = "rcw_turkestan"
+
+	state_regions = {
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_UZBEKIA
+		STATE_LARISTAN
+		STATE_LARISTAN
+	}
+}
+
+REPLACE:geographic_region_rcw_transcaucasia = {
+	short_key = "rcw_transcaucasia"
+
+	state_regions = {
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_GREATER_CAUCASUS
+		STATE_LARISTAN
+		STATE_LARISTAN
+		STATE_LARISTAN
+		STATE_LARISTAN
+		STATE_EASTERN_THRACE
+		STATE_EASTERN_THRACE
 	}
 }
 
@@ -1580,6 +2185,8 @@ REPLACE:geographic_region_russia_old = {
 		STATE_INGRIA
 		STATE_INGRIA
 		STATE_INGRIA
+		STATE_INGRIA
+		STATE_INGRIA
 	}
 }
 
@@ -1769,7 +2376,7 @@ REPLACE:geographic_region_west_siberia_old = {
 REPLACE:geographic_region_east_siberia_old = {
 	short_key = "east_sibera_old"
 
-	state_regions = { STATE_OKHOTSK STATE_OKHOTSK STATE_OKHOTSK STATE_OKHOTSK STATE_OKHOTSK STATE_OKHOTSK STATE_OKHOTSK STATE_OKHOTSK }
+	state_regions = { STATE_OKHOTSK STATE_OKHOTSK STATE_OKHOTSK STATE_OKHOTSK STATE_OKHOTSK STATE_OKHOTSK STATE_OKHOTSK }
 }
 
 ## Unchanged
@@ -1907,3 +2514,76 @@ REPLACE:geographic_region_caribbean_old = {
 
 # 	state_regions = { STATE_MIRANDA STATE_MIRANDA STATE_MIRANDA STATE_MIRANDA STATE_MIRANDA STATE_MIRANDA STATE_MIRANDA STATE_MIRANDA }
 # }
+
+
+# ---- 07_geographic_regions_maritime.txt ----
+REPLACE:geographic_region_polar_seas = { # sea regions prone to seasonal ice
+	short_key = "polar_seas"
+
+	state_regions = {
+		STATE_BARENTS_SEA
+		STATE_NORWEGIAN_SEA
+		STATE_NORTH_SEA
+		STATE_NORTHERN_NORTH_ATLANTIC_OCEAN
+		STATE_LABRADOR_SEA
+		STATE_DAVIS_STRAIT
+		STATE_HUDSON_BAY
+		STATE_GULF_OF_FINLAND
+		STATE_NORTHERN_BALTIC_SEA
+		STATE_BERING_SEA
+		STATE_GULF_OF_ALASKA
+		STATE_GRAND_BANKS
+		STATE_SEA_OF_OKHOTSK
+
+		STATE_PATAGONIAN_CHANNELS
+		STATE_PATAGONIAN_SEA
+	}
+}
+
+REPLACE:geographic_region_tropical_seas = { # sea regions prone to tropical storms
+	short_key = "tropical_seas"
+
+	state_regions = {
+		STATE_CAPE_VERDE_SEA
+		STATE_EQUATORIAL_ATLANTIC_OCEAN
+		STATE_MAIN_EQUATORIAL_CRURRENT
+		STATE_AMAZON_DELTA
+		STATE_COAST_OF_GUYANA
+		STATE_EASTERN_CARIBBEAN_SEA
+		STATE_WESTERN_CARIBBEAN_SEA
+		STATE_GULF_OF_MEXICO
+		STATE_BAHAMA_BANKS
+		STATE_SOUTH_ATLANTIC_COAST
+		STATE_SARGASSO_SEA
+
+		STATE_SOUTH_BRAZIL_BIGHT
+		STATE_CAPE_ST_ROQUE
+
+		STATE_HORN_OF_AFRICA
+		STATE_ARABIAN_SEA
+		STATE_ZANZIBAR_COAST
+		STATE_MOZAMBIQUE_CHANNEL
+		STATE_WESTERN_INDIAN_OCEAN
+		STATE_EASTERN_INDIAN_OCEAN
+		STATE_LACCADIVE_SEA
+		STATE_BAY_OF_BENGAL
+
+		STATE_MALACCA_STRAIT
+		STATE_SOUTH_INDIAN_OCEAN
+		STATE_JAVA_SEA
+		STATE_MOLUCCA_SEA
+		STATE_MALAY_SEA
+		STATE_SOUTH_CHINA_SEA
+		STATE_EAST_CHINA_SEA
+		STATE_YELLOW_SEA
+		STATE_PHILIPPINES_SEA
+		STATE_MICRONESIAN_SEA
+		STATE_CORAL_SEA
+		STATE_WESTERN_POLYNESIAN_SEA
+
+		STATE_NORTHERN_POLYNESIAN_SEA
+		STATE_NORTH_PACIFIC_OCEAN
+		STATE_CENTROAMERICAN_SEA
+		STATE_PACIFIC_SEABOARD
+	}
+}

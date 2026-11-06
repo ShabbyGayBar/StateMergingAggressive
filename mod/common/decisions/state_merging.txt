@@ -61,7 +61,7 @@ REPLACE:lowlands_land_reclamation = {
 
 	possible = {
 		has_technology_researched = watertube_boiler
-		bureaucracy > 200
+		bureaucracy >= 200
 	}
 
 	when_taken = {
@@ -486,7 +486,7 @@ REPLACE:decision_found_budapest = {
 			limit = {
 				state_region = s:STATE_BESSARABIA
 			}
-			STATE_CENTRAL_HUNGARY_state_name_assign = yes
+			STATE_BESSARABIA_state_name_assign = yes
 		}
 		custom_tooltip = choose_one_of_tt
 		show_as_tooltip = {
@@ -1291,7 +1291,7 @@ REPLACE:demand_return_of_koh_i_noor = {
 		any_primary_culture = {
 			has_discrimination_trait_group = heritage_group_south_asian
 		}
-		is_subject = no
+		is_independent_and_not_being_subjugated = yes
 		country_rank >= rank_value:unrecognized_major_power
 		any_country_in_europe = {
 			has_variable = koh_i_noor
@@ -1308,7 +1308,7 @@ REPLACE:demand_return_of_koh_i_noor = {
 		custom_tooltip = {
 			text = not_at_war_with_koh_i_noor_owner_tt
 			NOT = {
-				any_diplomatically_relevant_country = {
+				any_country_in_europe = {
 					custom_tooltip = {
 						text = owns_koh_i_noor_tt
 						has_variable = koh_i_noor
@@ -1327,7 +1327,7 @@ REPLACE:demand_return_of_koh_i_noor = {
 
 	when_taken = {
 		set_global_variable = { name = koh_i_noor_decision_return_demanded years = 10 }
-		random_country = {
+		random_country_in_europe = {
 			limit = {
 				has_variable = koh_i_noor
 			}
@@ -1344,7 +1344,7 @@ REPLACE:demand_return_of_koh_i_noor = {
 		value = 0
 		if = {
 			limit = {
-				any_diplomatically_relevant_country = {
+				any_country_in_europe = {
 					has_variable = koh_i_noor
 					relations:root <= relations_threshold:cordial
 				}
@@ -1499,22 +1499,8 @@ REPLACE:pressure_to_sell_berar_province = {
 			trigger_event = { id = india_events.18 }
 		}
 		custom_tooltip = if_they_accept_tt
-		show_as_tooltip = {
-			add_modifier = {
-				name = lease_of_berar_costs
-			}
-			c:HYD ?= {
-				add_modifier = {
-					name = lease_of_berar_income
-				}
-				random_scope_state = {
-					limit = {
-						state_region = s:STATE_CENTRAL_PROVINCES
-					}
-					set_state_owner = root
-				}
-			}
-		}
+		custom_tooltip = lease_of_berar_decision_tt
+		custom_tooltip = lease_of_berar_decision_payment_tt
 		set_variable = sold_berar_var
 	}
 
@@ -1906,6 +1892,7 @@ REPLACE:decision_depose_ruling_dynasty = {
 					value <= disapprove
 				}
 			}
+			is_busy = no
 			loyalty < define:NCharacters|LOYALTY_UNCERTAIN_THRESHOLD
 			trigger_if = {
 				limit = {
@@ -1935,6 +1922,7 @@ REPLACE:decision_depose_ruling_dynasty = {
 					}
 				}
 				var:monthly_cached_commander_coup_strength >= root.country_coup_resistance
+				is_busy = no
 				loyalty < define:NCharacters|LOYALTY_UNCERTAIN_THRESHOLD
 			}
 			order_by = popularity
@@ -1985,6 +1973,7 @@ REPLACE:decision_reorganize_iberian_crowns = {
 	}
 
 	possible = {
+		is_at_war = no
 		OR = {
 			c:SPA ?= {
 				is_subject_of = ROOT
@@ -2112,6 +2101,7 @@ REPLACE:decision_restore_kingdom_of_brazil = {
 	}
 
 	possible = {
+		is_at_war = no
 		OR = {
 			c:BRZ ?= {
 				is_subject_of = ROOT
@@ -2226,11 +2216,11 @@ REPLACE:manifest_destiny = {
 			has_interest_marker_in_region = sr:region_pacific_coast
 			sr:region_great_plains = {
 				any_scope_state = {
-					percent = 0.4
+					percent >= 0.4
 					owner = {
 						OR = {
 							this = root
-							is_subject_of = root
+							is_subject_of_and_not_being_freed = root
 						}
 					}
 				}
@@ -2241,12 +2231,12 @@ REPLACE:manifest_destiny = {
 	when_taken = {
 		if = {
 			limit = {
-				owns_entire_state_region = STATE_CALIFORNIA
-				owns_entire_state_region = STATE_CALIFORNIA
-				owns_entire_state_region = STATE_CALIFORNIA
-				owns_entire_state_region = STATE_CALIFORNIA
-				owns_entire_state_region = STATE_MONTANA
-				owns_entire_state_region = STATE_MISSISSIPPI
+				owns_entire_state_region_uncontested = STATE_CALIFORNIA
+				owns_entire_state_region_uncontested = STATE_CALIFORNIA
+				owns_entire_state_region_uncontested = STATE_CALIFORNIA
+				owns_entire_state_region_uncontested = STATE_CALIFORNIA
+				owns_entire_state_region_uncontested = STATE_MONTANA
+				owns_entire_state_region_uncontested = STATE_MISSISSIPPI
 			}
 			trigger_event = { id = manifest_destiny.1 }
 		}
@@ -2257,13 +2247,13 @@ REPLACE:manifest_destiny = {
 		}
 		if = {
 			limit = {
-				owns_entire_state_region = STATE_MONTANA
-				owns_entire_state_region = STATE_MONTANA
-				owns_entire_state_region = STATE_MONTANA
-				owns_entire_state_region = STATE_MONTANA
-				owns_entire_state_region = STATE_MONTANA
-				owns_entire_state_region = STATE_MONTANA
-				owns_entire_state_region = STATE_MONTANA
+				owns_entire_state_region_uncontested = STATE_MONTANA
+				owns_entire_state_region_uncontested = STATE_MONTANA
+				owns_entire_state_region_uncontested = STATE_MONTANA
+				owns_entire_state_region_uncontested = STATE_MONTANA
+				owns_entire_state_region_uncontested = STATE_MONTANA
+				owns_entire_state_region_uncontested = STATE_MONTANA
+				owns_entire_state_region_uncontested = STATE_MONTANA
 			}
 			trigger_event = { id = manifest_destiny.2 }
 		}

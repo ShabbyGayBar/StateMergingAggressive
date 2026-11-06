@@ -41,17 +41,6 @@ dominican_events.1 = {
 	option = {
 		name = dominican_events.1.a
 		default_option = yes
-		ai_chance = {
-			base = 10
-			modifier = {
-				trigger = {
-					scope:dominican_movement ?= {
-						political_movement_radicalism >= 0.20
-					}
-				}
-				add = -5
-			}
-		}
 		scope:dominican_movement = {
 			add_modifier = {
 				name = modifier_birth_of_the_liberation_army
@@ -83,17 +72,6 @@ dominican_events.1 = {
 
 	option = {
 		name = dominican_events.1.b
-		ai_chance = {
-			base = 10
-			modifier = {
-				trigger = {
-					scope:dominican_movement ?= {
-						political_movement_radicalism >= 0.20
-					}
-				}
-				add = -5
-			}
-		}
 		scope:dominican_movement = {
 			add_modifier = {
 				name = modifier_birth_of_the_liberation_army
@@ -225,6 +203,10 @@ dominican_events.2 = {
 		}
 		play_as = c:DOM
 	}
+
+	after = {
+		je_la_trinitaria_cleanup = yes
+	}
 }
 
 dominican_events.3 = {
@@ -303,6 +285,10 @@ dominican_events.3 = {
 			base = 10
 		}
 	}
+
+	after = {
+		je_la_trinitaria_cleanup = yes
+	}
 }
 
 dominican_events.4 = {
@@ -310,8 +296,6 @@ dominican_events.4 = {
 	placement = root
 
 	duration = 3
-
-	dlc = dlc016
 
 	title = dominican_events.4.t
 	desc = dominican_events.4.d
@@ -328,6 +312,7 @@ dominican_events.4 = {
 	cooldown = { days = normal_modifier_time }
 
 	trigger = {
+		# triggered by on_action - on_monthly_pulse_country
 		NOT = {
 			has_global_variable = dominican_independence_happened_var
 		}
@@ -557,8 +542,6 @@ dominican_events.5 = {
 	placement = root
 
 	duration = 3
-
-	dlc = dlc016
 
 	title = dominican_events.5.t
 	desc = {
